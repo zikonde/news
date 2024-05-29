@@ -15,6 +15,7 @@ function get_connection(){
             global $connection_tries;
             @$database_connection = new mysqli($hostname, $host_username, $host_password, '', $port);
 
+            var_dump($database_connection);
             function create_database($database_connection, $database){
 
                 $database_connection->query("set default_storage_engine='InnoDB';");
@@ -131,4 +132,5 @@ function close_connection(){
      		//mysql_close($database_connection) or die(mysql_error()); 
 	} 
 }
+get_connection();
 ?> 
