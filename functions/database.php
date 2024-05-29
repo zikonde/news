@@ -15,7 +15,7 @@ function get_connection(){
             global $connection_tries;
             @$database_connection = new mysqli($hostname, $host_username, $host_password, '', $port);
 
-            var_dump($database_connection);
+            #var_dump($database_connection);
             function create_database($database_connection, $database){
 
                 $database_connection->query("set default_storage_engine='InnoDB';");
@@ -30,7 +30,7 @@ function get_connection(){
                                     DEFAULT COLLATE gbk_chinese_ci; ";
 
                 if ($database_connection->query($create_database) === TRUE) {
-                    echo "成功建起数据库$database"."<br>";
+                    // echo "成功建起数据库$database"."<br>";
                 } else {
                     die( "数据库 $database 建起失败： " . $database_connection->error. "<br>");
                 }
@@ -44,10 +44,10 @@ function get_connection(){
                     name char(20) not null 
                 );";
                 if ($database_connection->query($create_category_table)) {
-                    echo "成功建起表category"."<br>";
+                    // echo "成功建起表category"."<br>";
                     $database_connection->query("insert into category values(null,'娱乐')"); 
                     $database_connection->query("insert into category values(null,'财经')"); 
-                    echo "成功添加category表初始化数据"."<br>"; 
+                    // echo "成功添加category表初始化数据"."<br>"; 
                 }else {
                     die( "表category建起失败： " . $database_connection->error."<br>");
                 }
@@ -58,7 +58,7 @@ function get_connection(){
                     password char(32) 
                 );"; 
                 if ($database_connection->query($create_users_table)) {
-                    echo "成功建起表users"."<br>";
+                    // echo "成功建起表users"."<br>";
                     $admin_pwd = md5(md5("admin"));
                     $Zikonde_pwd = md5(md5("123"));
 
@@ -66,7 +66,7 @@ function get_connection(){
                                     values
                                         (null, 'admin', '$admin_pwd'),
                                         (null, 'Zikonde', '$Zikonde_pwd')";
-                    echo "成功添加users表初始化数据"."<br>"; 
+                    // echo "成功添加users表初始化数据"."<br>"; 
 
                     $database_connection->query($InsertSQL);
                 } else {
@@ -86,7 +86,7 @@ function get_connection(){
                     constraint FK_news_category foreign key (category_id) references category(category_id) 
                 ); ";
                 if ($database_connection->query($create_news_table)) {
-                    echo "成功建起表news"."<br>";
+                    // echo "成功建起表news"."<br>";
                 } else {
                     die( "表news建起失败： " . $database_connection->error."<br>");
                 }
@@ -101,7 +101,7 @@ function get_connection(){
                     constraint FK_review_news foreign key (news_id) references news(news_id) 
                 );"; 
                 if ($database_connection->query($create_review_table)) {
-                    echo "成功建起表review"."<br>";
+                    // echo "成功建起表review"."<br>";
                 } else {
                     die( "表review建起失败： " . $database_connection->error."<br>");
                 }

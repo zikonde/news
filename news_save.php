@@ -13,8 +13,8 @@ if(!is_login()){
           $user_id = $_SESSION["user_id"]; 
           $category_id = (isset($_POST["category_id"])? (intval($_POST["category_id"])>0?intval($_POST["category_id"]):1):1);
           if(isset($_POST["title"])&&isset($_POST["content"])){
-               $title = htmlspecialchars(addslashes($_POST["title"])); 
-               $content = htmlspecialchars(addslashes($_POST["content"])); 
+               $title = addslashes($_POST["title"]); 
+               $content = addslashes($_POST["content"]); 
                $currentDate =  date("Y-m-d H:i:s"); 
                $clicked = 0; 
                $file_name = $_FILES["news_file"]["name"]; 
