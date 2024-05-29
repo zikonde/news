@@ -9,12 +9,15 @@ function get_connection(){
     $database = "news"; 			//数据库名 
     $port = 3306;
     @$database_connection = NEW mysqli($hostname, $host_username, $host_password,$database,$port); 					//连接数据库服务器
+    var_dump($database_connection);
+    var_dump(mysqli_connect_error());
     if(mysqli_connect_error()){
         if(strtolower(@$database_connection->connect_error)==strtolower("Unknown database '$database'")){
             //数据库不存在
             global $connection_tries;
             @$database_connection = new mysqli($hostname, $host_username, $host_password, '', $port);
 
+            var_dump($database_connection);
             function create_database($database_connection, $database){
 
                 $database_connection->query("set default_storage_engine='InnoDB';");
@@ -131,4 +134,5 @@ function close_connection(){
      		//mysql_close($database_connection) or die(mysql_error()); 
 	} 
 }
+get_connection();
 ?> 
