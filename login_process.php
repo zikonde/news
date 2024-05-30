@@ -1,6 +1,7 @@
 <?php 
 include_once("functions/session_config.php"); 
 include_once("functions/database.php"); 
+
 $name = $_POST["name"]; 
 
 //echo $_POST["name"];
@@ -40,7 +41,6 @@ if($result_set->num_rows>0){
      $_SESSION['user_id'] = $admin['user_id']; 
      echo $admin['name'];
      $_SESSION['name'] = $admin['name']; 
-     die();
      header("Location:index.php?login_message=password_right");
 }else{ 
      header("Location:index.php?login_message=password_error"); 

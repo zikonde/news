@@ -1,4 +1,8 @@
 <?php 
+if($_SERVER["PHP_SELF"] === "/functions/file_system.php"){
+  header("location:../index.php");
+}
+
 function upload($file,$file_path){ 
      $error = $file['error']; 
      switch ($error){ 

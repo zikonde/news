@@ -13,18 +13,18 @@ if(isset($_GET["message"])){
 $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):3):3); 
 
 //若进行模糊查询，取得模糊查询的关键字keyword 
-$keyword = (isset($_GET["keyword"])?htmlentities(trim($_GET["keyword"])):""); 
-
+$keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
+$keyword_search = addslashes($keyword);
 
 $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
 
 $start = ($page_current-1)*$page_size; 
 
 //构造查询所有新闻的SQL语句
-$search_all_sql = "select COUNT(news_id) as 'total records' from news where title like '%$keyword%' or content like '%$keyword%' order by news_id"; 
+$search_all_sql = "select COUNT(news_id) as 'total records' from news where title like '%$keyword_search%' or content like '%$keyword_search%' order by news_id"; 
 
 //构造模糊查询新闻的SQL语句 
-$search_sql = "select * from news where title like '%$keyword%' or content like '%$keyword%' order by news_id desc limit $start,$page_size"; 
+$search_sql = "select * from news where title like '%$keyword_search%' or content like '%$keyword_search%' order by news_id desc limit $start,$page_size"; 
 get_connection(); 
 
 $result_set = $database_connection->query($search_sql); 

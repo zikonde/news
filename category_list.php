@@ -6,14 +6,12 @@ include_once("functions/session_config.php");
 
 //显示文件上传的状态信息 
 if(isset($_GET["message"])){ 
-    echo $_GET["message"]."<br/>"; 
-} 
+    echo $_GET["message"]."<br/>"; ?>
+<?php } 
 
 //变量声明
 $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):3):3); 
-
 $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
 $start = ($page_current-1)*$page_size; 
 
 //构造查询所有新闻的SQL语句
@@ -37,17 +35,12 @@ close_connection();
 //提供进行模糊查询的form表单 
 ?> 
 <form action="index.php?url=news_list.php" method="get" name = 'f1'>
-
-    
-    <br/> 
-    
     <table> 
         <?php 
         //分页的实现 
         echo "<tr>
                 <td colspan='3'>娱乐栏目</td>
             </tr>";
-        echo "<br/>";
         if($total_records1 == 0){
             echo("娱乐类栏目暂无新闻！"); 
             
@@ -69,8 +62,7 @@ close_connection();
 
         echo "<tr>
             <td colspan='3'>财经栏目</td>
-        </tr>";
-        echo "<br/>";
+        </tr>";     
         if($total_records2== 0){
             echo("财经类栏目暂无新闻！"); 
             echo "<br/>";
@@ -90,5 +82,4 @@ close_connection();
         }
         ?>  
     </table> 
-
 </form> 
