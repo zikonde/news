@@ -1,4 +1,8 @@
 <?php 
+if($_SERVER["PHP_SELF"] === "/functions/page.php"){
+  header("location:../index.php");
+}
+
 function page($total_records,$page_size,$page_current,$url,$keyword){ 
     $total_pages = ceil($total_records/$page_size); 
     if($page_current>$total_pages){

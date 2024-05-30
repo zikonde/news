@@ -1,5 +1,5 @@
 <?php  
-if($_SERVER["REQUEST_URI"] === "/functions/database.php"){
+if($_SERVER["PHP_SELF"] === "/functions/database.php"){
     header("location:../index.php");
 }else{
     $database_connection = null; 
