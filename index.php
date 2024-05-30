@@ -1,5 +1,3 @@
-<?php
-?>
 <html> 
 <head> 
 <title> 
@@ -58,27 +56,24 @@
      		<a href="">联系方法</a> 
      		<a href="">相关法律</a> 
      		<a href="">举报违法信息</a> 
-     		<br><br>
-            <p>公司版权所有</p> 
-     		<br>
+     		<br><br>公司版权所有 
      </div> 
 </div> 
 </body> 
 </html> 
 <script> 
-    var sidebarHeight = document.getElementById("sidebar").clientHeight; 
-    var mainbodyHeight = document.getElementById("mainbody").clientHeight; 
-    if(sidebarHeight<500&&mainbodyHeight<500){ 
-        document.getElementById("sidebar").style.height="500px"; 
-        document.getElementById("mainbody").style.height="500px"; 
-    }else{ 
-        if(sidebarHeight<mainbodyHeight){ 
-            document.getElementById("sidebar").style.height=mainbodyHeight+"px"; 
-        }else{ 
-            document.getElementById("mainbody").style.height=sidebarHeight+"px"; 
-        } 
-    } 
-    
-    document.getElementsByName("page_size")[0].value=<?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
-    
+var sidebarHeight = document.getElementById("sidebar").clientHeight; 
+var mainbodyHeight = document.getElementById("mainbody").clientHeight; 
+if(sidebarHeight<500&&mainbodyHeight<500){ 
+     document.getElementById("sidebar").style.height="500px"; 
+     document.getElementById("mainbody").style.height="500px"; 
+}else{ 
+     if(sidebarHeight<mainbodyHeight){ 
+     		document.getElementById("sidebar").style.height=mainbodyHeight+"px"; 
+     }else{ 
+
+
+     		document.getElementById("mainbody").style.height=sidebarHeight+"px"; 
+     } 
+} 
 </script> 

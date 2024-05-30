@@ -7,37 +7,33 @@ $sql_news_detail = "select * from news where news_id=$news_id";
 $sql_review_query = "select * from review where news_id=$news_id and state='已审核'"; 
 //执行3条SQL语句 
 get_connection(); 
-$database_connection->query($sql_news_update); 
-$result_news = $database_connection->query($sql_news_detail); 
-$result_review = $database_connection->query($sql_review_query); 
+mysql_query($sql_news_update); 
+$result_news = mysql_query($sql_news_detail); 
+$result_review = mysql_query($sql_review_query); 
 //取出结果集中新闻条数 
-$count_news = ($result_news instanceof mysqli_result? $result_news->num_rows:0); 
+$count_news = mysql_num_rows($result_news); 
 //取出结果集中该新闻"已审核"的评论条数 
-$count_review = ($result_review instanceof mysqli_result? $result_review->num_rows:0);
+$count_review = mysql_num_rows($result_review); 
 if($count_news==0){ 
      echo "该新闻不存在或已被删除！"; 
      exit; 
 } 
 //根据新闻信息中的user_id查询对应的用户信息 
-$news =$result_news->fetch_array(); 
+$news = mysql_fetch_array($result_news); 
 $user_id = $news["user_id"]; 
-$sql_user = "select name from users where user_id=$user_id"; 
-$result_user = $database_connection->query($sql_user); 
-$user = ($result_user instanceof mysqli_result? $result_user->fetch_array():["name"=>"未知"]);
-
+$sql_user = "select * from users where user_id=$user_id"; 
+$result_user = mysql_query($sql_user); 
+$user = mysql_fetch_array($result_user); 
 //根据新闻信息中的category_id查询对应的新闻类别信息 
 $category_id = $news["category_id"]; 
-$sql_category = "select name from category where category_id=$category_id"; 
-$result_category =$database_connection->query($sql_category); 
-$category = ($result_category instanceof mysqli_result? $result_category->fetch_array():["name"=>"——"]);
-
+$sql_category = "select * from category where category_id=$category_id"; 
+$result_category = mysql_query($sql_category); 
+$category = mysql_fetch_array($result_category); 
 close_connection(); 
-
-if($result_user instanceof mysqli_result)$result_user->free_result(); 
-if($result_category instanceof mysqli_result)$result_category->free_result(); 
-if($result_news instanceof mysqli_result)$result_news->free_result(); 
-if($result_review instanceof mysqli_result)$result_review->free_result(); 
-
+mysql_free_result($result_user); 
+mysql_free_result($result_category); 
+mysql_free_result($result_news); 
+mysql_free_result($result_review); 
 $title = $news['title']; 
 $content = $news['content']; 
 if(isset($_GET["keyword"])){ 
@@ -46,7 +42,6 @@ if(isset($_GET["keyword"])){
      $title = str_replace($keyword,$replacement,$title); 
      $content = str_replace($keyword,$replacement,$content); 
 } 
-
 //显示新闻详细信息 
 ?> 
 <table> 

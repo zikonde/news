@@ -43,10 +43,9 @@ body{
 #mainbody{ 
      text-align:left; 
      width:610px; 
-     max-height: 60vh;
+
      float:right; 
      background-color:#D8D8D8; 
-     overflow-y: auto;
   
 } 
 #mainfunction{ 
@@ -54,7 +53,7 @@ body{
 } 
 #footer{ 
      width:778px; 
-     min-height:40px; 
+     height:40px; 
      margin:0px auto; 
      background-color:#FFCC00; 
      padding:20px 0px 0px 0px; 
