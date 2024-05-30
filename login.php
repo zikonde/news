@@ -14,10 +14,10 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                     echo "登录成功！<br/>"; 
           } 
      } 
-     if(is_login()){ 
-          echo "欢迎".$_SESSION['name']."访问系统！<br/>"; 
-          echo "<a href='index?url=logout.php'>注销</a>"; 
-     }else{
+     if(is_login()){ ?>
+          欢迎 <?=$_SESSION['name'] ?> 访问系统！<br/> 
+            <a href='index?url=logout.php' onclick="return confirm('确认要注销？')">注销</a> 
+     <?php }else{
           $name = ""; 
           if(isset($_COOKIE["name"])){ 
                $name = $_COOKIE["name"]; 

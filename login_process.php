@@ -23,6 +23,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
                     $first_password = md5($input_password); 
                } 
           }else{  
+               setcookie("password",$first_password,time()-1); 
                $first_password = md5($input_password);
           }
 

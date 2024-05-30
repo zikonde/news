@@ -54,7 +54,7 @@ close_connection();
                        <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
                     </td>
                     <?php 
-                    if(is_login()){ 
+                    if(is_admin()){ 
                     ?> 
                         <td> 
                            <a href="index.php?url=news_edit.php&news_id=<?php echo $row['news_id']?>">±à¼­</a> 
