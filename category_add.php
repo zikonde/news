@@ -25,6 +25,7 @@ if($_SERVER["PHP_SELF"] === "/category_add.php"){
             请输入新增类别名称：
             <input type="text" name="new_category" style="width:200px ; height:50px;">
             <br />
+            <br />
             请输入新增类别描述：
             <input type="text" name="new_description" style="width:200px ; height:50px;">
             <br />

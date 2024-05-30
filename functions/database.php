@@ -44,7 +44,8 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
 
                     $create_category_table = "create table category( 
                         category_id int auto_increment primary key, 
-                        name char(20) not null 
+                        name char(20) not null,
+                        description char(255) not null 
                     );";
                     if ($database_connection->query($create_category_table)) {
                         // echo "成功建起表category"."<br>";
@@ -57,6 +58,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
 
                     $create_users_table = "create table users( 
                         user_id int auto_increment primary key, 
+                        role CHAR( 6 ) NOT NULL DEFAULT 'user',
                         name char(20) not null, 
                         password char(32) 
                     );"; 
@@ -64,11 +66,13 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         // echo "成功建起表users"."<br>";
                         $admin_pwd = md5(md5("admin"));
                         $Zikonde_pwd = md5(md5("123"));
+                        $dwq_pwd = md5(md5("123"));
 
                         $InsertSQL =    "Insert into users ( user_id, name, password) 
                                         values
-                                            (null, 'admin', '$admin_pwd'),
-                                            (null, 'Zikonde', '$Zikonde_pwd')";
+                                            (null, 'admin', 'admin', '$admin_pwd'),
+                                            (null, 'admin', 'Zikonde', '$Zikonde_pwd'),
+                                            (null, 'admin', 'dwq', '$dwq_pwd')";
                         // echo "成功添加users表初始化数据"."<br>"; 
 
                         $database_connection->query($InsertSQL);

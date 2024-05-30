@@ -8,11 +8,12 @@ create database news;
 use news; 
 create table category( 
      category_id int auto_increment primary key, 
-     name char(20) not null 
+     name char(20) not null, 
      description char(255) not null
 ); 
 create table users( 
      user_id int auto_increment primary key, 
+     role CHAR( 6 ) NOT NULL DEFAULT 'user',
      name char(20) not null, 
      password char(32) 
 ); 
