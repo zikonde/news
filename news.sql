@@ -9,6 +9,7 @@ use news;
 create table category( 
      category_id int auto_increment primary key, 
      name char(20) not null 
+     desc char(50) not null
 ); 
 create table users( 
      user_id int auto_increment primary key, 
