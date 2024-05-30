@@ -25,9 +25,8 @@ if(isset($_COOKIE["password"])){
 } 
 ?> 
 <form action="login_process.php" method="post"> 
-用户名：<input type="text" name="name" size="11" value="<?php echo 
-
-$name?>" /><br/> 
+用户名：<input type="text" name="name" size="11" value="<?php echo $name?>" autocomplete=1 />
+<br/> 
 密 码 ：<input type="password" name="password" size="11" value="<?php 
 
 echo $password?>" /><br/> 

@@ -1,5 +1,6 @@
 <?php
 ?>
+<!DOCTYPE html>
 <html> 
 <head> 
 <title> 
@@ -77,8 +78,8 @@
 			} 
 		} 
 		
-		document.getElementsByName("page_size")[0].value=<?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
-		
+		var page_size = document.getElementsByName("page_size")[0]
+		if(page_size)page_size.value=<?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
 	</script> 
 </body> 
 </html> 
