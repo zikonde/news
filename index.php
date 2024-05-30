@@ -11,6 +11,7 @@
 <body> 
 	<div id="container"> 
 		<div id="header"> 
+			<?php include_once("functions/is_login.php"); ?>
 				<div id="menu"> 
 					<ul> 
 					<li><a href="index.php?url=news_list.php">首页</a></li> 
@@ -19,8 +20,9 @@
 					<li class="menudiv"></li> 
 					<li><a href="index.php?url=category_list.php">分类浏览</a></li> 
 					<li class="menudiv"></li> 
-					<li><a href="index.php?url=news_add.php">新闻发布</a></li> 
-					<li class="menudiv"></li> 
+					<?php if(is_admin()){ ?> <li><a href="index.php?url=news_add.php">新闻发布</a></li>
+						<li class="menudiv"></li> 
+					<?php }?>
 					<li><a href="index.php?url=category_add.php">添加分类</a></li> 
 					<li class="menudiv"></li> 
 					<li><a href="" onclick="this.style.behavior='url(#default#homepage)';this. setHomePage('http://<?php echo $_SERVER['HTTP_HOST']?>/news');">设为首页</a></li>
