@@ -28,6 +28,7 @@ function calculateFeaturedScore($featuredData) {
   return $featuredScore;
 }
 
+
 function getCategoryRelevance($category) {
   /*
    * Calculates a category relevance score based on (replace with your logic).
