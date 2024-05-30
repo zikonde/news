@@ -1,8 +1,7 @@
 <?php 
 include_once("functions/is_login.php"); 
-include_once("functions/session_config.php"); 
 if(!is_login()){ 
-     echo "请您登录系统后，再访问该页面！"; 
+     echo "请您登录后在访问该页面！"; 
      return; 
 } 
 ?> 

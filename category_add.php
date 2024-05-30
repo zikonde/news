@@ -1,8 +1,5 @@
 <?php 
 include_once("functions/is_login.php"); 
-if (!session_id()){
-    session_start(); 
-} 
 if(!is_login()){ 
     echo "请登录后再查看该页面！";
     return; 
