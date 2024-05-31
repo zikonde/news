@@ -21,6 +21,7 @@ $search_all_sql2 = "select COUNT(news_id) as 'total records2' from news where ca
 //构造模糊查询新闻的SQL语句 
 $search_sql1 = "select * from news where category_id=1 order by news_id desc limit $start,$page_size"; 
 $search_sql2 = "select * from news where category_id=2 order by news_id desc limit $start,$page_size"; 
+
 get_connection(); 
 
 $result_set1 = $database_connection->query($search_sql1); 
@@ -38,6 +39,8 @@ close_connection();
     <table> 
         <?php 
         //分页的实现 
+        #########################################
+
         echo "<tr>
                 <td colspan='3'>娱乐栏目</td>
             </tr>";
@@ -59,7 +62,7 @@ close_connection();
                 <?php 
             }
         }
-
+########################################################
         echo "<tr>
             <td colspan='3'>财经栏目</td>
         </tr>";     
