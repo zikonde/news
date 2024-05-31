@@ -74,7 +74,7 @@ close_connection();
                 
                 <br/>
             
-                <?php return;
+                <?php //return;
             }else{
                 while($row = mysqli_fetch_array($result_search_by_category_set[$i])){ 
                     ?>           
