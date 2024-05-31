@@ -3,7 +3,7 @@ if($_SERVER["PHP_SELF"] === "/category_add.php"){
     header("location:../index.php");
 }else{
     include_once("functions/is_login.php"); 
-    if(!is_login()){ 
+    if(!is_admin()){ 
         echo "请登录后再查看该页面！";
         return; 
     } 

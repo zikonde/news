@@ -42,7 +42,7 @@
 				</div> 
 				<div id="mainbody"> 
 					<div id="mainfunction"> 
-						<br> 
+						
 						<?php 
 							if(isset($_GET["url"])){ 
 								$url = $_GET["url"]; 
