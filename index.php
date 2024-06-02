@@ -8,7 +8,7 @@
 </title> 
 <link rel="stylesheet" href="css/news.css" type="text/css"> 
 </head> 
-<body> 
+<body onload="showMessage()">
 	<div id="container"> 
 		<div id="header"> 
 			<?php include_once("functions/is_login.php"); ?>
@@ -49,7 +49,8 @@
 							}else{ 
 								$url = "news_list.php"; 
 							} 
-							include_once($url); 
+							
+							if (file_exists($url)) include_once($url); 
 						?> 
 					</div> 
 				</div> 
@@ -80,8 +81,17 @@
 			} 
 		} 
 		
-		var page_size = document.getElementsByName("page_size")[0]
-		if(page_size)page_size.value=<?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
+		var page_size = document.getElementsByName("page_size")[0];
+		if(page_size){
+			page_size.value=<?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
+		}
+		
+		function showMessage() {
+			var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
+			if(message != '') alert(message);
+		}
 	</script> 
-</body> 
+	<script> 
+	</script> 
+</body>
 </html> 

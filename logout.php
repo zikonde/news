@@ -4,6 +4,7 @@ if($_SERVER["PHP_SELF"] === "/logout.php"){
      header("location:../index.php");
  }else{
      include_once("functions/session_config.php"); 
+     include_once("url_navigator.php");
 
      session_unset(); 
 
@@ -13,6 +14,6 @@ if($_SERVER["PHP_SELF"] === "/logout.php"){
 
      session_destroy(); 
 
-     header("Location:index.php");
+     header("Location:".add_to_url());
 }
 ?> 

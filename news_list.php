@@ -21,14 +21,14 @@ $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?i
 $start = ($page_current-1)*$page_size; 
 
 //构造查询所有新闻的SQL语句
-$search_all_sql = "select COUNT(news_id) as 'total records' from news where title like '%$keyword_search%' or content like '%$keyword_search%' order by news_id"; 
+$count_all_sql = "SELECT COUNT(news_id) as 'total records' from news where title like '%$keyword_search%' or content like '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')  order by news_id"; 
 
 //构造模糊查询新闻的SQL语句 
-$search_sql = "select * from news where title like '%$keyword_search%' or content like '%$keyword_search%' order by news_id desc limit $start,$page_size"; 
+$search_sql = "SELECT * FROM news WHERE title LIKE '%$keyword_search%' OR content LIKE '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%') ORDER BY news_id DESC LIMIT $start, $page_size";
 get_connection(); 
 
 $result_set = $database_connection->query($search_sql); 
-$total_records = $database_connection->query("$search_all_sql");
+$total_records = $database_connection->query("$count_all_sql");
 $total_records = ($total_records instanceof mysqli_result?$total_records->fetch_array()["total records"]:0); 
 close_connection(); 
     

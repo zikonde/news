@@ -8,6 +8,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
           
      include_once("functions/session_config.php"); 
      include_once("functions/database.php"); 
+     include_once("url_navigator.php");
 
      $name = addslashes($_POST["name"]);
      $input_password = addslashes($_POST["password"]); 
@@ -48,9 +49,9 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
                $_SESSION['role'] = $admin['role']; 
                $_SESSION['name'] = $admin['name'];
                
-               header("Location:index.php?login_message=password_right");
+               header("Location:".add_to_url(["login_message"=>"password_right"]));
           }else{ 
-               header("Location:index.php?login_message=password_error"); 
+               header("Location:".add_to_url(["login_message"=>"password_error"]));
           } 
           close_connection(); 
      }
