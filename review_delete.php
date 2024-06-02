@@ -1,6 +1,7 @@
 <?php 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
+include_once("url_navigator.php");
 
 if(!is_login()){ 
      echo "请您登录系统后，再访问该页面！"; 
@@ -14,6 +15,6 @@ if(!is_login()){
      $result_set = $database_connection->query($sql); 
      close_connection(); 
      
-     header("Location:index.php?url=review_list.php"); 
+     header("Location:".add_to_url()); 
 } 
 ?> 

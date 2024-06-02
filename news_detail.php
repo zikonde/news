@@ -66,14 +66,6 @@ if($news_id==0){
      <tr><td width="80">发布时间：</td><td><?php echo $news['publish_time'];?></td></tr> 
      <tr><td width="80">点击次数：</td><td><?php echo $news['clicked'];?></td></tr> 
      </table> 
-     <?php 
-     //显示查看评论超链接 
-     if($count_review>0){ 
-          echo "<a href='index.php?url=review_news_list.php&news_id=".$news['news_id']."'>共有".$count_review."条评论</a><br/>"; 
-     }else{ 
-          echo "该新闻暂无评论！<br/>"; 
-     } 
-     ?> 
      <br/> 
      <form action="review_save.php" method="post"> 
      添加评论：<textarea name="content" cols="50" rows="5"></textarea><br/> 
@@ -81,4 +73,15 @@ if($news_id==0){
      <input type="submit" value="评论"> 
      </form> 
 
+     <br/> 
+     
+     <?php 
+     //显示查看评论超链接 
+     if($count_review>0){ 
+          echo "<a href='index.php?url=review_news_list.php&news_id=".$news['news_id']."'>共有".$count_review."条评论</a><br/>"; 
+          include_once("review_news_list.php");
+     }else{ 
+          echo "该新闻暂无评论！<br/>"; 
+     } 
+     ?> 
 <?php } ?>

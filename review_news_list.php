@@ -5,7 +5,7 @@ $sql = "select * from review where news_id=$news_id and state='已审核' order by 
 get_connection(); 
 $result_set = $database_connection->query($sql); 
 close_connection(); 
-echo "该新闻的评论如下：<br/>"; 
+echo "<br/>"; 
 while($row = $result_set->fetch_array()){ 
      echo "评论内容：".$row["content"]."<br/>"; 
      echo "评论日期：".$row["publish_time"]."<br/>"; 

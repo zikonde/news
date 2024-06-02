@@ -1,6 +1,7 @@
 <?php 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
+include_once("url_navigator.php");
 
 if(!is_login()){ 
      echo "请您登录系统后，再访问该页面！"; 
@@ -15,7 +16,7 @@ if(!is_login()){
      close_connection(); 
 
      $message = "新闻及相关评论信息删除成功！"; 
-     header("Location:index.php?url=news_list.php&message=$message");
+     header("Location:".add_to_url(["message" => $message])); 
 } 
 ?> 
 <?php 
