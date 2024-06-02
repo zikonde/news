@@ -41,7 +41,7 @@ if(!is_login()){
      } 
 
      $message = urlencode($message);
-     header("Location:".add_to_url(["message" => $message],$url = "index.php"));  
+     header("Location:".add_to_url(["message" => $message], $url = "index.php"));  
 }
 
 ?>
