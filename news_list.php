@@ -51,6 +51,9 @@ close_connection();
                 ?> 
                 <tr> 
                     <td> 
+                       <img src="<?php echo $row['thumbnail'];?>" width="150px"> 
+                    </td>
+                    <td> 
                        <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
                     </td>
                     <?php 

@@ -89,6 +89,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         publish_time datetime, 
                         clicked int, 
                         attachment char(100), 
+                        thumbnail CHAR( 255 ) NOT NULL DEFAULT 'images/thumbnail.jpg',
                         constraint FK_news_user foreign key (user_id) references users(user_id), 
                         constraint FK_news_category foreign key (category_id) references category(category_id) 
                     ); ";

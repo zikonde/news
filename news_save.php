@@ -26,11 +26,15 @@ if(!is_login()){
           }else{
                $currentDate =  date("Y-m-d H:i:s"); 
                $clicked = 0; 
-               $file_name = $_FILES["news_file"]["name"]; 
+               $file_name = @$_FILES["news_file"]["name"]; 
+               $thumbnail = (@$_FILES["thumbnail"]["error"] == 0? @$_FILES["thumbnail"]["name"]: "thumbnail.jpg");
+               
                if(is_dir("uploads") == false) mkdir("uploads");
+               if(is_dir("images") == false) mkdir("images");
                $message = upload($_FILES["news_file"],"uploads"); #revisit this
+               upload($_FILES["thumbnail"],"images"); #revisit this
 
-               $sql = "insert into news values(null, $user_id, $category_id, '$title', '$content', '$currentDate', $clicked, '$file_name');"; 
+               $sql = "insert into news values(null, $user_id, $category_id, '$title', '$content', '$currentDate', $clicked, '$file_name','/images/$thumbnail');"; 
 
                if($message == "文件上传成功！" || $message == "没有选择上传附件！"){ 
                          include_once("functions/database.php"); 
