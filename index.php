@@ -11,7 +11,8 @@
 <body onload="showMessage()">
 	<div id="container"> 
 		<div id="header"> 
-			<?php include_once("functions/is_login.php"); ?>
+			<?php include_once("functions/is_login.php");
+			include_once("url_navigator.php"); ?>
 				<div id="menu"> 
 					<ul> 
 					<li><a href="index.php?url=news_list.php">Ê×Ò³</a></li> 
@@ -88,7 +89,23 @@
 		
 		function showMessage() {
 			var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
-			if(message != '') alert(message);
+			if(message != '') {
+				alert(message);
+				const url = window.location;
+				const params = new URLSearchParams(url.search);
+				params.delete('message')
+				document.location.href = url.origin + url.pathname + '?' + params.toString();
+			}
+		}
+		
+		function pager(){
+			var page_size = document.getElementsByName("page_size")[0].value;
+			if(page_size){
+				const url = window.location;
+				const params = new URLSearchParams(url.search);
+				params.delete('page_size')
+				document.location.href = url.origin + url.pathname + '?' + params.toString() + "&page_size=" + page_size;
+			}
 		}
 	</script> 
 	<script> 

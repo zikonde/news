@@ -8,14 +8,14 @@ if($news_id==0){
      return; 
 }else{
      //构造3条SQL语句 
-     $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id"; 
+     // $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id";
      $sql_news_detail = "select * from news where news_id=$news_id"; 
      $sql_review_query = "select * from review where news_id=$news_id and state='已审核'"; 
 
      //执行3条SQL语句 
      get_connection(); 
      
-     $database_connection->query($sql_news_update); 
+     // $database_connection->query($sql_news_update); 
      $result_news = $database_connection->query($sql_news_detail); 
      $result_review = $database_connection->query($sql_review_query); 
 
@@ -47,12 +47,13 @@ if($news_id==0){
      
      $title = $news['title']; 
      $content = $news['content']; 
+     $user = $user['name'];
      if(isset($_GET["keyword"])){ 
           $keyword = $_GET["keyword"]; 
           $replacement = "<span style='color: red'><b><i>".$keyword."</b></i></span>";  
           $title = str_replace($keyword,$replacement,$title); 
           $content = str_replace($keyword,$replacement,$content); 
-          $user = str_replace($keyword,$replacement,$user['name']); 
+          $user = str_replace($keyword,$replacement,$user); 
      } 
      
      //显示新闻详细信息 
@@ -61,7 +62,7 @@ if($news_id==0){
      <tr><td width="80">标题：</td><td><?php echo $title;?></td></tr> 
      <tr><td width="80">内容：</td><td><?php echo $content;?></td></tr> 
      <tr><td width="80">附件：</td><td><a href="download.php?attachment=<?php echo urlencode($news['attachment']);?>"><?php echo $news['attachment'];?></a></td></tr> 
-     <tr><td width="80">发布者：</td><td><?php echo $user;?></td></tr> 
+     <tr><td width="80">发布者：</td><td><?php echo ($user) ;?></td></tr> 
      <tr><td width="80">类别：</td><td><?php echo $category['name'];?></td></tr> 
      <tr><td width="80">发布时间：</td><td><?php echo $news['publish_time'];?></td></tr> 
      <tr><td width="80">点击次数：</td><td><?php echo $news['clicked'];?></td></tr> 

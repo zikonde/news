@@ -34,7 +34,7 @@ close_connection();
     
 //提供进行模糊查询的form表单 
 ?> 
-<form action="index.php?url=news_list.php" method="get" name = 'f1'>
+<form action="index.php?url=news_list.php" method="get" name = 'f1' onsubmit="check()">
     请输入关键字：<input type="text" name="keyword" value="<?php echo $keyword?>"> 
     <input type="submit" value="搜索"> 
     
@@ -51,7 +51,7 @@ close_connection();
                 ?> 
                 <tr> 
                     <td> 
-                       <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
+                       <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
                     </td>
                     <?php 
                     if(is_admin()){ 
@@ -74,3 +74,19 @@ close_connection();
     </table> 
 
 </form> 
+
+<script>
+    function check(){
+        var keyword = document.f1.keyword.value;
+        if(keyword == ""){
+            alert("请输入关键字！");
+            return false;
+        }
+        return true;
+    }
+    function updateClicked(hreflink){
+        var news_id = new URLSearchParams(hreflink).get('news_id');
+        
+        document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
+    }
+</script>

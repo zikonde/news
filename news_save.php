@@ -27,6 +27,7 @@ if(!is_login()){
                $currentDate =  date("Y-m-d H:i:s"); 
                $clicked = 0; 
                $file_name = $_FILES["news_file"]["name"]; 
+               if(is_dir("uploads") == false) mkdir("uploads");
                $message = upload($_FILES["news_file"],"uploads"); #revisit this
 
                $sql = "insert into news values(null, $user_id, $category_id, '$title', '$content', '$currentDate', $clicked, '$file_name');"; 
@@ -41,7 +42,7 @@ if(!is_login()){
      } 
 
      $message = urlencode($message);
-     header("Location:".add_to_url(["message" => $message], $url = "index.php"));  
+     header("Location:".add_to_url(["message" => $message], "index.php"));  
 }
 
 ?>

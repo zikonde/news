@@ -42,7 +42,7 @@ function page($total_records,$page_size,$page_current,$url,$keyword){
         <table>
             <tr>
                 <td>
-                    <select name="page_size" id='page_size' style="text-align: center;">
+                    <select name="page_size" id='page_size' style="text-align: center;" onchange = "pager()">
                         <option value="3">3</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
