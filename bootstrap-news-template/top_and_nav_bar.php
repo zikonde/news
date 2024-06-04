@@ -103,11 +103,12 @@
                             </div>
                         </div>
 
-                        <a href="index.php?url=news_add.php" class="nav-item nav-link">新闻发布</a>
+                        <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
 
                         <a href="index.php?url=category_add.php" class="nav-item nav-link">添加分类</a>
                         
-                        <a href="single-page.html" class="nav-item nav-link">Single Page</a>
+                        <a href="single-page.php" class="nav-item nav-link">Single Page</a>
+
                         <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">Contact Us</a>
                     </div>
                     <div class="social ml-auto">
@@ -136,31 +137,44 @@
     <!-- Nav Bar End -->
 
     <script>
-            var page_size = document.getElementsByName("page_size")[0];
+        var page_size = document.getElementsByName("page_size")[0];
+        if(page_size){
+            page_size.value= <?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
+        }
+
+        function showMessage() {
+            var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
+            if(message != '') {
+                alert(message);
+                const url = window.location;
+                const params = new URLSearchParams(url.search);
+                params.delete('message')
+                document.location.href = url.origin + url.pathname + '?' + params.toString();
+            }
+        }
+
+        function pager(){
+            var page_size = document.getElementsByName("page_size")[0].value;
             if(page_size){
-                page_size.value= <?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
+                const url = window.location;
+                const params = new URLSearchParams(url.search);
+                params.delete('page_size')
+                document.location.href = url.origin + url.pathname + '?' + params.toString() + "&page_size=" + page_size;
             }
-
-            function showMessage() {
-                var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
-                if(message != '') {
-                    alert(message);
-                    const url = window.location;
-                    const params = new URLSearchParams(url.search);
-                    params.delete('message')
-                    document.location.href = url.origin + url.pathname + '?' + params.toString();
-                }
+        }
+            
+        function updateThumbnail() {
+            var file = document.getElementById("thumbnail").files[0];
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                document.getElementById("news_image").src = reader.result;
             }
-
-            function pager(){
-                var page_size = document.getElementsByName("page_size")[0].value;
-                if(page_size){
-                    const url = window.location;
-                    const params = new URLSearchParams(url.search);
-                    params.delete('page_size')
-                    document.location.href = url.origin + url.pathname + '?' + params.toString() + "&page_size=" + page_size;
-                }
+            if(file) {
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById("news_image").src = "";
             }
+        }
         </script>
 </body>
 </html>

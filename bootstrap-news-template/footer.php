@@ -70,7 +70,7 @@
         <div class="footer-menu">
             <div class="container">
                 <div class="f-menu">
-				    <a href="">系统简介</a> 
+				    <a href="index.php?url=system_introduction.php">系统简介</a> 
 				    <a href="contact.php">联系方法</a> 
                     <a href="">使用条款</a>
                     <a href="">隐私政策</a>

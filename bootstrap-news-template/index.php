@@ -10,18 +10,15 @@
         <?php include_once "top_and_nav_bar.php" ?>
 
         <div id="mainbody"> 
-            <div id="mainfunction"> 
+            <?php 
+                if(isset($_GET["url"])){ 
+                    $url = $_GET["url"]; 
+                }else{ 
+                    $url = "news.php"; 
+                } 
                 
-                <?php 
-                    if(isset($_GET["url"])){ 
-                        $url = $_GET["url"]; 
-                    }else{ 
-                        $url = "news.php"; 
-                    } 
-                    
-                    if (file_exists($url)) include_once($url); 
-                ?> 
-            </div> 
+                if (file_exists($url)) include_once($url); 
+            ?> 
         </div> 
 
 
