@@ -59,10 +59,10 @@
 				</div> 
 		</div> 
 		<div id="footer"> 
-				<a href="">系统简介</a> 
-				<a href="">联系方法</a> 
-				<a href="">相关法律</a> 
-				<a href="">举报违法信息</a> 
+				<a href="system_introduction.html">系统简介</a> 
+				<a href="contacting_methods.html">联系方法</a> 
+				<a href="http://swlgbj.liuzhou.gov.cn/ztzl/ysxt/t19700101_3288417.html">相关法律</a> 
+				<a href="https://www.12377.cn/bmgz/2022/8db0296a_web.html">举报违法信息</a> 
 				<br><br>
 				<p>公司版权所有</p> 
 				<br>
