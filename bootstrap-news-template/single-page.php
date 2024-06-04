@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
         <title>Bootstrap News Template - Free HTML Templates</title>
     </head>
 

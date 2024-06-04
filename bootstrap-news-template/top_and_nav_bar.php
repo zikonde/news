@@ -52,14 +52,14 @@
     <div class="brand">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-md-4">
+                <div class="col-lg-3 col-md-4">
                     <div class="b-logo">
                         <a href="index.html">
                             <img src="img/logo.png" alt="Logo">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-4" style="text-align: right;">
+                <div class="col-lg-9 col-md-4" style="text-align: center;">
                     <?php 
                     include_once("login.php"); 
                     ?> 
