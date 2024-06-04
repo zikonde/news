@@ -30,9 +30,9 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
 
           <form action="login_process.php" method="post"> 
                用户名：<input type="text" name="name" size="11" value="<?php echo $name?>" autocomplete=1 />
-               <br/> 
+               &emsp;
                密 码 ：<input type="password" name="password" size="11" value="<?php echo $password?>" />
-               <br/> 
+               &emsp; 
                验证码：<input type="text" name="checknum" size="6"/>
                <?php $checknum  =  "";
                     $checknum .= mt_rand(0,9);
@@ -42,8 +42,9 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                     $_SESSION['checknum'] = $checknum;
                echo $checknum;?>
                <br/>
+               <br/>
                <input type="checkbox" name="expire" value="3600" checked/> Cookie保存1小时
-               <br/> 
+               &emsp; 
                <input type="submit" value="登录" /> 
           </form>  
  <?php 
