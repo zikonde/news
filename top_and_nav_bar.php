@@ -1,3 +1,10 @@
+
+<?php 
+include_once("functions/database.php"); 
+include_once("functions/page.php"); 
+include_once("functions/is_login.php"); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,16 +105,21 @@
                         <div class="nav-item dropdown">
                             <a href="index.php?url=category_list.php" class="nav-link dropdown-toggle" data-toggle="dropdown">分类浏览</a>
                             <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Sub Item 1</a>
-                                <a href="#" class="dropdown-item">Sub Item 2</a>
+                                <?php 
+                                $sql = "SELECT category_id, category.name FROM category ORDER BY name;";
+                                get_connection();
+                                $result_set = $database_connection->query($sql);
+                                close_connection();
+                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                    <a href="#" class="dropdown-item"><?php echo $row['name']?></a>
+                                <?php  }
+                                ?>
                             </div>
                         </div>
 
                         <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
 
                         <a href="index.php?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
-                        
-                        <a href="single-page.php" class="nav-item nav-link">Single Page</a>
 
                         <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
                     </div>
@@ -119,8 +131,10 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-12 col-md-4">
                                     <div class="b-search">
-                                        <input type="text" placeholder="Search">
-                                        <button><i class="fa fa-search"></i></button>
+                                        <form action="index.php?url=news_list.php" method="get" name = 'f1' onsubmit="check()">
+                                            <input type="text" name="keyword" placeholder="搜索">
+                                            <button><i class="fa fa-search"></i></button>
+                                        </form> 
                                     </div>
                                 </div>
                             </div>
