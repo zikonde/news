@@ -31,14 +31,31 @@
           
           $result_sql = "select * from review order by review_id desc limit $start,$page_size"; 
           $result_set = $database_connection->query($result_sql); 
-          close_connection(); 
-          echo "系统所有评论信息如下：<br/>"; 
+          close_connection(); ?>
+
+          
+          <div class="breadcrumb-wrap">
+               <div class="container">
+               <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item active">评论浏览</li>
+               </ul>
+               </div>
+          </div>
+          <!-- Breadcrumb End -->
+          
+          <br />
+
+          <h1 class="sn-title" style="text-align: center;">系统所有评论信息如下：</h1>
+          <br />
+
+          <?php
           while($row = $result_set->fetch_array()){ 
                echo "评论内容：".$row["content"]."<br/>"; 
                echo "日期：".$row["publish_time"]."&nbsp;&nbsp;"; 
                echo "IP地址：".$row["ip"]."&nbsp;&nbsp;"; 
                echo "状态：".$row["state"]."<br/>"; 
-               echo "<a href='review_delete.php?review_id=".$row["review_id"]."'>删除</a>"; 
+               echo "<a href='review_delete.php?review_id=".$row["review_id"]."' onclick='return confirm(\"确定删除该评论？\")'>删除</a>";
                echo "&nbsp;&nbsp;&nbsp;"; 
                if($row["state"]=="未审核"){ 
                          echo "<a href='review_verify.php?review_id=".$row["review_id"]."'>审核</a>"; 

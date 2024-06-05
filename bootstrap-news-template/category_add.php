@@ -33,6 +33,19 @@
                     }
 
                 </script>
+                
+                <div class="breadcrumb-wrap">
+                    <div class="container">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">首页</a></li>
+                            <li class="breadcrumb-item active">添加分类</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Breadcrumb End -->
+                
+                <br />
+                
                 <form action="index.php?url=category_add_process.php" method="post">
                     请输入新增类别名称：
                     <input type="text" name="new_category" style="width:200px ; height:50px;">

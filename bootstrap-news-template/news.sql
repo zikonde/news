@@ -34,9 +34,11 @@ create table news(
 create table review( 
      review_id int auto_increment primary key, 
      news_id int, 
+     user_id int, 
      content text, 
      publish_time datetime, 
      state char(10), 
      ip char(15), 
-     constraint FK_review_news foreign key (news_id) references news(news_id) 
+     constraint FK_review_news foreign key (news_id) references news(news_id), 
+     constraint FK_review_news foreign key (user_id) references news(user_id) 
 ); 

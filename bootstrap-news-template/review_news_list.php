@@ -1,14 +1,42 @@
-<?php 
-include_once("functions/database.php"); 
-$news_id = $_GET["news_id"]; 
-$sql = "select * from review where news_id=$news_id and state='已审核' order by review_id desc"; 
-get_connection(); 
-$result_set = $database_connection->query($sql); 
-close_connection(); 
-echo "<br/>"; 
-while($row = $result_set->fetch_array()){ 
-     echo "评论内容：".$row["content"]."<br/>"; 
-     echo "评论日期：".$row["publish_time"]."<br/>"; 
-     echo "评论IP地址：".$row["ip"]."<hr/>"; 
-} 
-?> 
+
+<div>
+     <?php 
+     include_once("functions/database.php"); 
+     $news_id = intval(addslashes($_GET["news_id"])); 
+     $sql = "select * from review where news_id=$news_id and state='已审核' order by publish_time desc limit 50"; 
+     get_connection(); 
+     $result_set = $database_connection->query($sql); 
+     close_connection(); 
+
+     while($row = $result_set->fetch_array()){ ?>
+          <div class="media">
+               <img src="img/user.png" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+               <div class="media-body">
+                    <?php 
+                    get_connection();
+                    $user_id = $row["user_id"];
+                    $sql_user = "select name from users where user_id=$user_id"; 
+                    $result_user = $database_connection->query($sql_user); 
+                    $user = ($result_user instanceof mysqli_result? $result_user->fetch_array():["name"=>"未知"]);
+                    // $ipdat = "http://ip-api.com/json/" . $row["ip"];
+                    // $response = file_get_contents($ipdat);
+
+                    // Decode the JSON response
+                    // $data = json_decode($response);
+
+                    // Extract the city name (if available)
+                    // $city = @$data->city;
+                    // $city = $ipdat->geoplugin_city;  
+                    close_connection();
+                    ?>
+                    <h6> <a class="text-secondary font-weight-bold" href=""><?=$user["name"]?> </a> <small><i> <?php echo $row["publish_time"]; ?></i></small></h6>
+                    <p><?php echo $row["content"]; ?></p>
+                    <p>IP: <?php echo  $row["ip"] ?></p>
+                    <!-- <p>IP: <?#php echo (isset($city)?$city:"未知") ?></p> -->
+                    <button class="btn btn-sm btn-outline-secondary">Reply</button>
+               </div>
+          </div>
+          <br />
+          <br />
+     <?php } ?> 
+</div>

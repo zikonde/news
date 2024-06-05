@@ -16,9 +16,24 @@
             echo "请您登录系统后，再访问该页面！"; 
             return; 
         }else{?>  
+
+            
+            <div class="breadcrumb-wrap">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">首页</a></li>
+                        <li class="breadcrumb-item active">新闻发布</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Breadcrumb End -->
+            
+            <br />
+                    
             <form action="news_save.php" method="post" enctype="multipart/form-data"> 
                 <div style="font-size: 20px; font-weight: bold; text-align:center">
-                    <p>新闻发布</p>
+                    <h1 class="sn-title">新闻发布</h1>
+            <br />
                     <img src="images/thumbnail.jpg" width="150" height="150" id="news_image"> <input type = "file" id="thumbnail" name="thumbnail" accept="image/*" size="50" onchange="updateThumbnail()" >
                 </div>
 

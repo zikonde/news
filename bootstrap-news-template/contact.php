@@ -14,8 +14,8 @@
             <div class="breadcrumb-wrap">
                 <div class="container">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active">Contact</li>
+                        <li class="breadcrumb-item"><a href="index.php">首页</a></li>
+                        <li class="breadcrumb-item active">联系方法</li>
                     </ul>
                 </div>
             </div>
@@ -30,37 +30,45 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" placeholder="Your Name" />
+                                            <input type="text" class="form-control" placeholder="您的姓名" />
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="email" class="form-control" placeholder="Your Email" />
+                                            <input type="email" class="form-control" placeholder="您的电子邮件" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject" />
+                                        <input type="text" class="form-control" placeholder="主题" />
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                                        <textarea class="form-control" rows="5" placeholder="留言"></textarea>
                                     </div>
-                                    <div><button class="btn" type="submit">Send Message</button></div>
+                                    <div><button class="btn" type="submit">发送消息</button></div>
                                 </form>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="contact-info">
-                                <h3>Get in Touch</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus.
-                                </p>
-                                <h4><i class="fa fa-map-marker"></i>123 News Street, NY, USA</h4>
-                                <h4><i class="fa fa-envelope"></i>info@example.com</h4>
-                                <h4><i class="fa fa-phone"></i>+123-456-7890</h4>
+                            <div class="contact-info" style="text-align: justify;">
+                                
+                                <h3>联系方式</h3>
+                                
+                                <br>
+
+                                <h4><i class="fa-solid fa-user"></i> 制作人 1： 尼康达（Zikonde）</h4>
+                                <h4><i class="fa fa-map-marker"></i> 手机号：17543995348</h4>
+                                <h4><i class="fa-brands fa-weixin"></i> 微信号：zirenda</h4>
+                                <h4><i class="fa-brands fa-qq"></i> QQ号：2819960965</h4>
+                                
+                                <br>
+
+                                <h4><i class="fa-solid fa-user"></i> 制作人 2： 邓琬琼</h4>
+                                <h4><i class="fa fa-map-marker"></i> 手机号：19381923882</h4>
+                                <h4><i class="fa-brands fa-weixin"></i> 微信号：wxid_0684sfy1oohv12</h4>
+                                <h4><i class="fa-brands fa-qq"></i> QQ号：2819960965</h4>
+
+                                <br>
+
                                 <div class="social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                    <?php include("contact_brands.php") ?>
                                 </div>
                             </div>
                         </div>

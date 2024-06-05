@@ -1,7 +1,11 @@
 /**********************************/
 /********** General CSS ***********/
 /**********************************/
-
+.media img {
+    width: 45px;
+    height: 45px;
+    /* border-radius: 50%; */
+}
 #pagebody{ 
      width:778px; 
 
@@ -11,7 +15,7 @@
      margin:10px 0px 0px 0px; 
 } 
 #mainfunction{ 
-     margin:2% 5% 10px 5%; 
+     margin:2% 5% 2% 5%; 
      text-align: center;
 } 
 #mainfunction img{ 
@@ -127,18 +131,33 @@ h6 {
     background: #FF6F61;
 }
 
-button.btn {
+button.btn, input[type="submit"] {
     color: #ffffff;
     background: #000000;
     border: 1px solid #000000;
+    border-radius: 4px 4px;
+    padding: 10px 15px;
 }
 
-button.btn:hover {
+button.btn:hover, input[type="submit"]:hover, input[type="file"] {
     color: #ffffff;
     background: #FF6F61;
     border-color: #FF6F61;
 }
 
+input[type="reset"]{
+    color: #ffffff;
+    background: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 4px 4px;
+    padding: 10px 15px;
+}
+
+input[type="reset"]:hover {
+    color: #ffffff;
+    background: #FF6F61;
+    border: 1px solid #FF6F61;
+}
 
 /**********************************/
 /*********** Top Bar CSS **********/
@@ -806,6 +825,18 @@ button.btn:hover {
 .single-news .sn-img img {
     width: 100%;
 }
+.single-news .sn-container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+.single-news .sn-container {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: #cccccc 0px 0px 10px 0px;
+}
 
 .single-news .sn-content {
     position: relative;
@@ -817,6 +848,18 @@ button.btn:hover {
     display: block;
     width: 100%;
     color: #000000;
+}
+
+.single-news .sn-comment {
+    text-align:center;
+}
+
+.single-news .sn-comment input[type="submit"] {
+    vertical-align:top;
+}
+
+.single-news .sn-comment textarea {
+    max-width:100%;
 }
 
 .single-news .sn-related {
@@ -926,10 +969,12 @@ button.btn:hover {
     position: relative;
     width: 100%;
     margin-bottom: 45px;
+    box-shadow: #cccccc 0px 0px 5px 0px;
 }
 
 .sidebar .sidebar-widget h2.sw-title {
     color: #000000;
+    padding: 30px;
     margin-bottom: 30px;
     padding-bottom: 15px;
     border-bottom: 3px double #000000;
@@ -1026,6 +1071,8 @@ button.btn:hover {
 
 .sidebar .sidebar-widget .category {
     position: relative;
+    margin: 20px;
+    padding-bottom: 20px;
 }
 
 .sidebar .category ul {

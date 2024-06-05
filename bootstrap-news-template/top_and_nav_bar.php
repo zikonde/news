@@ -105,18 +105,14 @@
 
                         <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
 
-                        <a href="index.php?url=category_add.php" class="nav-item nav-link">添加分类</a>
+                        <a href="index.php?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
                         
                         <a href="single-page.php" class="nav-item nav-link">Single Page</a>
 
-                        <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">Contact Us</a>
+                        <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
                     </div>
                     <div class="social ml-auto">
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-youtube"></i></a>
+                        <?php include_once("contact_brands.php") ?>
                     </div>
                     <div class="brand" style="background-color: #FF6F61;">
                         <div class="container">

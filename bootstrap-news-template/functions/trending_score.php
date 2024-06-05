@@ -1,5 +1,7 @@
 <?php
 
+$sql = "SELECT news.news_id , news.category_id, Sum(news.clicked) AS total_views, Count(review.review_id) AS total_comments FROM users INNER JOIN (news INNER JOIN review ON news.news_id = review.news_id) ON users.user_id = review.user_id GROUP BY news.news_id , news.category_id, review.state HAVING (((review.state)=\"ÒÑÉóºË\"))";
+
 function calculateTrendingScore($newsData) {
     /*
     Calculates a trending score for a news item based on factors.
