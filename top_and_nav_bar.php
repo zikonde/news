@@ -8,26 +8,26 @@ include_once("functions/is_login.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="GBK">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="Bootstrap News Template - Free HTML Templates" name="keywords">
-        <meta content="Bootstrap News Template - Free HTML Templates" name="description">
+    <meta charset="GBK">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Bootstrap News Template - Free HTML Templates" name="keywords">
+    <meta content="Bootstrap News Template - Free HTML Templates" name="description">
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-        <!-- Google Fonts -->
-        <link href="lib/css/googleapis.css" rel="stylesheet"> 
+    <!-- Google Fonts -->
+    <link href="lib/css/googleapis.css" rel="stylesheet"> 
 
-        <!-- CSS Libraries -->
-        <link href="lib/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/css/all.min.css" rel="stylesheet">
-        <link href="lib/slick/slick.css" rel="stylesheet">
-        <link href="lib/slick/slick-theme.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS Libraries -->
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/css/all.min.css" rel="stylesheet">
+    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- Template Stylesheet -->
-        <link href="lib/css/style.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="lib/css/style.css" rel="stylesheet">
 </head>
 <body>
     <!-- Top Bar Start -->
@@ -103,8 +103,9 @@ include_once("functions/is_login.php");
                         <a href="index.php?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a>
 
                         <div class="nav-item dropdown">
-                            <a href="index.php?url=category_list.php" class="nav-link dropdown-toggle" data-toggle="dropdown">分类浏览</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">分类浏览</a>
                             <div class="dropdown-menu">
+                                <a href="index.php?url=category_list.php" class="dropdown-item">所有分类 (All)</a>
                                 <?php 
                                 $sql = "SELECT category_id, category.name FROM category ORDER BY name;";
                                 get_connection();
@@ -124,7 +125,7 @@ include_once("functions/is_login.php");
                         <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
                     </div>
                     <div class="social ml-auto">
-                        <?php include_once("contact_brands.php") ?>
+                        <?php include_once("social-brands.php") ?>
                     </div>
                     <div class="brand" style="background-color: #FF6F61;">
                         <div class="container">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>News - µËçþÇí¡¢Zikonda Nyirenda</title>
+        <title>News - Zikonda Nyirenda¡¢µËçþÇí</title>
         <link href="img/favicon.ico" rel="icon">
     </head>
 
@@ -14,7 +14,7 @@
                 if(isset($_GET["url"])){ 
                     $url = $_GET["url"]; 
                 }else{ 
-                    $url = "news.php"; 
+                    $url = "index-news.php"; 
                 } 
                 
                 if (file_exists($url)) include_once($url); 

@@ -8,7 +8,7 @@ include_once("functions/is_login.php");
 //构造查询所有新闻的SQL语句
 $sql = "SELECT category.name, Count(news.news_id) AS total_news\n"
     . "FROM category INNER JOIN news ON category.category_id = news.category_id\n"
-    . "GROUP BY category.name";
+    . "GROUP BY category.name ORDER BY total_news DESC";
 
 get_connection();
 $result_set = $database_connection->query($sql);

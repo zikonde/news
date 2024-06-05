@@ -11,7 +11,7 @@
                                 <p><i class="fa fa-envelope"></i> news@scu.edu.cn</p>
                                 <p><i class="fa fa-phone"></i> +86-123-4567-890</p>
                                 <div class="social">
-                                    <?php include("contact_brands.php") ?>
+                                    <?php include("social-brands.php") ?>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="footer-widget">
                             <h3 class="title">快速链接</h3>
                             <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
+                                <li><a href="index.php?url=category_list.php">所有分类 (All)</a></li>
                                 <li><a href="#">Pellentesque</a></li>
                                 <li><a href="#">Aenean vulputate</a></li>
                                 <li><a href="#">Vestibulum sit amet</a></li>

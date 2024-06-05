@@ -15,6 +15,7 @@ $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?i
 $start = ($page_current-1)*$page_size; 
 
 //构造查询所有新闻的SQL语句
+get_connection();
 $result_categories = $database_connection->query("select category_id, name from category");
 
 $search_all_sql = [];
@@ -28,9 +29,6 @@ $search_by_category_sql = [];
 while($categories = mysqli_fetch_assoc($result_categories)){
     $search_by_category_sql[] = "select * from news where category_id=".$categories['category_id']." order by news_id desc limit $start,$page_size"; 
 }
-
-
-get_connection(); 
 
 $result_search_by_category_set = [];
 for($i=0;$i<=count($search_by_category_sql)-1;$i++){
@@ -56,39 +54,72 @@ close_connection();
     
 //提供进行模糊查询的form表单 
 ?> 
-<form action="index.php?url=news_list.php" method="get" name = 'f1'>
-    <table> 
-        <?php 
-        //分页的实现 
-       for($i = 0; $i < count($result_search_by_category_set); $i++){
-            $cat_name = mysqli_fetch_assoc($result_categories)["name"];?>
-            <tr>
-                <td colspan='3'><?=$cat_name?>栏目</td>
-            </tr>
 
-            <?php 
-            if($total_records_by_category[$i] == 0){?>
-                <tr>
-                    <td><?=$cat_name ?>类栏目暂无新闻！</td>
-                </tr>
-                
-                <br/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+        
+
+    <?php include_once "top_and_nav_bar.php" ?>
+
             
-                <?php //return;
-            }else{
-                while($row = mysqli_fetch_array($result_search_by_category_set[$i])){ 
-                    ?>           
-                    <tr> 
-                        <td> 
-                        <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>">
-                            <?php echo mb_strcut($row['title'],0,40,"gbk")?>
-                        </a>
-                        </td>
-                    </tr> 
+    <div id="mainfunction" style="text-align: justify;"> 
+        <form action="index.php?url=news_list.php" method="get" name = 'f1'>
+            <table> 
+                <?php 
+                //分页的实现 
+            for($i = 0; $i < count($result_search_by_category_set); $i++){
+                    $cat_name = mysqli_fetch_assoc($result_categories)["name"];?>
+                    <tr>
+                        <td colspan='3'><?=$cat_name?>栏目</td>
+                    </tr>
+
                     <?php 
+                    if($total_records_by_category[$i] == 0){?>
+                        <tr>
+                            <td><?=$cat_name ?>类栏目暂无新闻！</td>
+                        </tr>
+                        
+                        <br/>
+                    
+                        <?php //return;
+                    }else{
+                        while($row = mysqli_fetch_array($result_search_by_category_set[$i])){ 
+                            ?>           
+                            <tr> 
+                                <td> 
+                                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>">
+                                    <?php echo mb_strcut($row['title'],0,40,"gbk")?>
+                                </a>
+                                </td>
+                            </tr> 
+                            <?php 
+                        }
+                    }
                 }
-            }
-        }
-        ?>  
-    </table> 
-</form> 
+                ?>  
+            </table> 
+
+            <br />
+            <br />
+            
+            <div style="text-align:center">
+                <?php
+                $url = $_SERVER["REQUEST_URI"];
+                $total_records = array_sum($total_records_by_category);
+                $keyword = addslashes(isset($_GET["keyword"])? $_GET["keyword"]:"");
+                page($total_records,$page_size,$page_current,$url,$keyword);
+                ?>
+            </div>
+        </form> 
+    </div> 
+            
+        
+    <?php include_once "footer.php" ?>
+        
+            
+</body>
+</html>

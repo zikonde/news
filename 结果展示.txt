@@ -1,11 +1,11 @@
-1. æè¿°
-xmindæµç¨‹å›¾
+1. ÃèÊö
+xmindÁ÷³ÌÍ¼
 -different colors representing what users and admin can access
-è§£é‡Š
+½âÊÍ
 
-2. githubæ“ä½œè®°å½•
-æˆªå›¾/å¯¼å‡º
+2. github²Ù×÷¼ÇÂ¼
+½ØÍ¼/µ¼³ö
 
-3. è§†é¢‘ï¼ˆåˆ†åŠŸèƒ½ï¼‰
-æ·»åŠ å­—å¹•
+3. ÊÓÆµ£¨·Ö¹¦ÄÜ£©
+Ìí¼Ó×ÖÄ»
 

@@ -68,7 +68,7 @@
                                 <br>
 
                                 <div class="social">
-                                    <?php include("contact_brands.php") ?>
+                                    <?php include("social-brands.php") ?>
                                 </div>
                             </div>
                         </div>
