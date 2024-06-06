@@ -47,19 +47,21 @@ if(!is_admin()){
                var_dump((!$upload_err)? upload($_FILES["thumbnail"],"images"): null); 
 
                
-               $sql = "insert into news values(null, $user_id, $category_id, '$title', '$content', '$currentDate', $clicked, '$attachment_name','$thumbnail_name');"; 
+               $sql = "insert into news values(null, $user_id, $category_id, '$title', '$content', '$currentDate', $clicked, '$attachment_name','/images/$thumbnail_name');"; 
 
                if($message == "文件上传成功！" || $message == "没有选择上传附件！"){ 
                     include_once("functions/database.php"); 
                     get_connection(); 
-                    $database_connection->query($sql); 
+                    $message = (($database_connection->query($sql))? "新闻发布成功！":"新闻发布失败！"); 
                     
                     $result = $database_connection->query("select max(news_id) as news_id from news");
                     $news_id = mysqli_fetch_assoc($result)["news_id"];
-                    $new_thumbnail_name = (!$upload_err? $news_id.($thumbnail_name):$thumbnail_name);
+                    if(!$upload_err){
+                         $new_thumbnail_name = $news_id.$thumbnail_name;
+                         $message = (($database_connection->query("UPDATE news set thumbnail = 'images/$new_thumbnail_name' where news_id = $news_id"))? "新闻发布成功！":"新闻发布失败！");
+                         rename("images/".$thumbnail_name, "images/".$new_thumbnail_name);
+                    } 
 
-                    $message = (($database_connection->query("UPDATE news set thumbnail = 'images/$new_thumbnail_name' where news_id = $news_id"))? "新闻发布成功！":"新闻发布失败！");
-                    rename("images/".$thumbnail_name, "images/".$new_thumbnail_name);
 
                     close_connection();		 
                }
