@@ -186,6 +186,21 @@ include_once("functions/is_login.php");
                 document.getElementById("news_image").src = "";
             }
         }
+
+        function check(){
+            var keyword = document.f1.keyword.value;
+            if(keyword == ""){
+                alert("«Î ‰»Îπÿº¸◊÷£°");
+                return false;
+            }
+            return true;
+        }
+        
+        function updateClicked(hreflink){
+            var news_id = new URLSearchParams(hreflink).get('news_id');
+            
+            document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
+        }
         </script>
 </body>
 </html>
