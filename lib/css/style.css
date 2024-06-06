@@ -983,6 +983,8 @@ input[type="reset"]:hover {
 .sidebar .sidebar-widget .news-list {
     position: relative;
     margin-bottom: 30px;
+    padding-right: 20px;
+    padding-bottom: 5px;
 }
 
 .sidebar .news-list .nl-item {
@@ -1038,6 +1040,8 @@ input[type="reset"]:hover {
 
 .sidebar .tab-news .tab-content .container {
     padding: 0;
+    padding-right: 20px;
+    padding-bottom: 5px;
 }
 
 .sidebar .tab-news .tn-news {

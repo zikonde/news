@@ -180,7 +180,7 @@
                                                         <a class="nav-link active" data-toggle="pill" href="#featured">Featured</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="pill" href="#popular">热门</a>
+                                                        <a class="nav-link" data-toggle="pill" href="#popular"><i class="fa-solid fa-fire"></i> 热门</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" data-toggle="pill" href="#latest">最新</a>

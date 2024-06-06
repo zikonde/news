@@ -72,7 +72,7 @@
                             if(is_admin()){ 
                             ?> 
                                 <td> 
-                                <a href="index.php?url=news_edit.php&news_id=<?php echo $row['news_id']?>">±à¼­</a> 
+                                <a href="index.php?url=news_add.php&news_id=<?php echo $row['news_id']?>">±à¼­</a> 
                                 </td> 
                                 <td> 
                                 <a href="index.php?url=news_delete.php&news_id=<?php echo $row['news_id']?>" onclick="return confirm('È·¶¨É¾³ýÂð£¿');">É¾³ý</a> 
