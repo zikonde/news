@@ -34,8 +34,8 @@
                         <div class="footer-widget">
                             <h3 class="title">快速链接</h3>
                             <ul>
-                                <li><a href="index.php?url=category_list.php">所有分类 (All)</a></li>
-                                <li><a href="#">Pellentesque</a></li>
+                                <li><a href="index.php?url=category_list.php">所有分类 (All Categories)</a></li>
+                                <li><a href="index.php?url=news_list.php&page_size=10">所有新闻排列</a></li>
                                 <li><a href="#">Aenean vulputate</a></li>
                                 <li><a href="#">Vestibulum sit amet</a></li>
                                 <li><a href="#">Nam dignissim</a></li>
