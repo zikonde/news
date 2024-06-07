@@ -9,7 +9,7 @@
     <?php include_once "top_and_nav_bar.php" ?>
 
                 
-    <div id="mainfunction">     
+    <div id="mainfunction" style="text-align: center;">     
         <?php 
         if($_SERVER["PHP_SELF"] === "/category_add.php"){
             header("location:../index.php");

@@ -176,14 +176,17 @@ include_once("functions/is_login.php");
             
         function updateThumbnail() {
             var file = document.getElementById("thumbnail").files[0];
+            // var thumbnail = document.getElementById("thumbnail");
             var reader = new FileReader();
             reader.onloadend = function() {
                 document.getElementById("news_image").src = reader.result;
+                // thumbnail.style.backgroundImage = "url("+ reader.result+")";
             }
             if(file) {
                 reader.readAsDataURL(file);
             } else {
-                document.getElementById("news_image").src = "";
+                document.getElementById("news_image").src = "images/thumbnail.jpg";
+                // thumbnail.style.backgroundImage = "url(images/thumbnail.jpg)";
             }
         }
 

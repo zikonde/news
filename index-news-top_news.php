@@ -7,66 +7,68 @@
             <div class="col-md-6 tn-left">
                 <div class="row tn-slider">
 
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-450x350-1.jpg" />
-                            <div class="tn-title">
-                                <a href="">Lorem ipsum dolor sit amet</a>
+                    <?php 
+                    $popular = get_popular(0, 1, 1);
+
+                    if (mysqli_num_rows($popular) > 0) { 
+                        $row = mysqli_fetch_assoc($popular);
+                        $newsId = $row["news_id"];
+                        $title = $row["title"];
+                        $thumbnail = $row["thumbnail"];?>
+
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="<?= $thumbnail ?>" />
+                                <div class="tn-title">
+                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
 
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-450x350-2.jpg" />
-                            <div class="tn-title">
-                                <a  href="">Integer hendrerit elit eget purus sodales maximus</a>
+                    <?php 
+                    $latest_news = get_latest(0, 1, 1);
+
+                    if (mysqli_num_rows($latest_news) > 0) { 
+                        $row = mysqli_fetch_assoc($latest_news);
+                        $newsId = $row["news_id"];
+                        $title = $row["title"];
+                        $thumbnail = $row["thumbnail"];?>
+
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="<?= $thumbnail ?>" />
+                                <div class="tn-title">
+                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    <?php } ?>
+                    
                 </div>
             </div>
 
             <div class="col-md-6 tn-right">
                 <div class="row">
 
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-350x223-1.jpg" />
-                            <div class="tn-title">
-                                <a href="">Lorem ipsum dolor sit</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $latest_news = get_latest(0, 4, 3);
 
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-350x223-2.jpg" />
-                            <div class="tn-title">
-                                <a href="">Lorem ipsum dolor sit</a>
+                    if (mysqli_num_rows($latest_news) > 0) { 
+                        while($row = mysqli_fetch_assoc($latest_news)) {
+                            $newsId = $row["news_id"];
+                            $title = $row["title"];
+                            $thumbnail = $row["thumbnail"];?>
+                            
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="<?= $thumbnail ?>" />
+                                    <div class="tn-title">
+                                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-350x223-3.jpg" />
-                            <div class="tn-title">
-                                <a href="">Lorem ipsum dolor sit</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="img/news-350x223-4.jpg" />
-                            <div class="tn-title">
-                                <a href="">Lorem ipsum dolor sit</a>
-                            </div>
-                        </div>
-                    </div>
-
+                        <?php }
+                    }?>
                 </div>
             </div>
 

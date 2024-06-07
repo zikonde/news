@@ -139,10 +139,23 @@ button.btn, input[type="submit"] {
     padding: 10px 15px;
 }
 
-button.btn:hover, input[type="submit"]:hover, input[type="file"] {
+button.btn:hover, input[type="submit"]:hover {
     color: #ffffff;
     background: #FF6F61;
     border-color: #FF6F61;
+}
+
+input[type="filend"] ,#thumbnail{
+    text-align: center;
+    color: #ffffff;
+    background: #FF6F61;
+    border-color: #FF6F61;
+    /* background-image: url('../../images/thumbnail.jpg') ;
+    background-size: cover;
+    width: 60%; 
+    height: 0;
+    padding-bottom: 40%; 
+    position: relative;  */
 }
 
 input[type="reset"]{

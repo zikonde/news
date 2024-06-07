@@ -1,6 +1,34 @@
 <?php
 include_once("database.php"); 
 
+function get_latest($news_id = 0, $page_size = 5, $page_current = 1){
+    //变量声明
+    $start = ($page_current-1)*$page_size; 
+
+    //构造查询所有新闻的SQL语句
+    $search_sql = "select * from news where not news_id = $news_id order by publish_time desc limit $start,$page_size"; 
+
+    $database_connection = get_connection();
+    $result_set = $database_connection->query($search_sql);
+    close_connection(); 
+
+    return $result_set; 
+}
+
+function get_most_viewed($news_id = 0, $page_size = 5, $page_current = 1){
+    //变量声明
+    $start = ($page_current-1)*$page_size; 
+
+    //构造查询所有新闻的SQL语句
+    $search_sql = "select * from news where not news_id = $news_id order by clicked desc limit $start,$page_size"; 
+
+    $database_connection = get_connection();
+    $result_set = $database_connection->query($search_sql);
+    close_connection(); 
+
+    return $result_set; 
+}
+
 function get_popular($news_id = 0, $page_size = 5, $page_current = 1){
     //变量声明
     $start = ($page_current-1)*$page_size; 
@@ -23,20 +51,6 @@ function get_popular($news_id = 0, $page_size = 5, $page_current = 1){
     close_connection(); 
 
     return $result_set;
-}
-
-function get_latest($news_id = 0, $page_size = 5, $page_current = 1){
-    //变量声明
-    $start = ($page_current-1)*$page_size; 
-
-    //构造查询所有新闻的SQL语句
-    $search_sql = "select * from news where not news_id = $news_id order by publish_time desc limit $start,$page_size"; 
-
-    $database_connection = get_connection();
-    $result_set = $database_connection->query($search_sql);
-    close_connection(); 
-
-    return $result_set; 
 }
 
 function get_related($news_id = 0, $page_size = 5, $page_current = 1){

@@ -50,8 +50,12 @@
             <form action="<?=($news?"news_update.php":"news_save.php")?>" method="post" enctype="multipart/form-data"> 
                 <div style="font-size: 20px; font-weight: bold; text-align:center">
                     <h1 class="sn-title">新闻<?=($news?"编辑":"发布")?></h1>
-            <br />
-                    <img src="<?=$thumbnail?>" width="150" height="150" id="news_image"> <input type = "file" id="thumbnail" name="thumbnail" accept="image/*" size="50" onchange="updateThumbnail()" >
+                    <br /> 
+                    <img src="<?=$thumbnail?>" width="300" height="200" id="news_image"> 
+                    &emsp; 
+                    <input type = "file" id="thumbnail" name="thumbnail" accept="image/*" size="50" onchange="updateThumbnail()" >
+                    <br />
+                    <span style="font-size: small;color:red"> 图片比例要求为 3:2</span>
                 </div>
 
                 <br />
