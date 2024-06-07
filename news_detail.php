@@ -83,7 +83,7 @@
                                 <li class="breadcrumb-item"><a href="#">首页</a></li>
                                 <li class="breadcrumb-item"><a href="#">新闻</a></li>
                                 <li class="breadcrumb-item"><a href="#"><?php echo $category_name;?></a></li>
-                                <li class="breadcrumb-item active">新闻详情</li>
+                                <li class="breadcrumb-item active"><?=$title?></li>
                             </ul>
                         </div>
                     </div>

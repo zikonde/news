@@ -4,6 +4,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
 }else{
     $database_connection = null; 
     $connection_tries = 0;
+    
     function get_connection(){ 
         global $database_connection; 
         $hostname = "localhost"; 		//数据库服务器主机名，可以用IP代替 
@@ -135,6 +136,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
         } 
         return $database_connection;
     }
+
     function close_connection(){ 
         global $database_connection; 
         if($database_connection){ 
