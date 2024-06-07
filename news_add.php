@@ -7,7 +7,7 @@
     <?php include_once "top_and_nav_bar.php" ?>
 
         
-    <div id="mainfunction"> 
+    <div id="mainfunction" style="text-align: center;"> 
         <?php 
         include_once("functions/is_login.php"); 
         include_once("functions/session_config.php"); 

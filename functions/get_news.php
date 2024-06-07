@@ -1,7 +1,7 @@
 <?php
 include_once("database.php"); 
 
-function get_popular($news_id, $page_size = 5, $page_current = 1){
+function get_popular($news_id = 0, $page_size = 5, $page_current = 1){
     //变量声明
     $start = ($page_current-1)*$page_size; 
 
@@ -25,7 +25,7 @@ function get_popular($news_id, $page_size = 5, $page_current = 1){
     return $result_set;
 }
 
-function get_latest($news_id, $page_size = 5, $page_current = 1){
+function get_latest($news_id = 0, $page_size = 5, $page_current = 1){
     //变量声明
     $start = ($page_current-1)*$page_size; 
 
@@ -39,7 +39,7 @@ function get_latest($news_id, $page_size = 5, $page_current = 1){
     return $result_set; 
 }
 
-function get_related($news_id, $page_size = 5, $page_current = 1){
+function get_related($news_id = 0, $page_size = 5, $page_current = 1){
     //变量声明
     $start = ($page_current-1)*$page_size; 
     $database_connection = get_connection();
