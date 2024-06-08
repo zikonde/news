@@ -200,7 +200,7 @@
                                         
         
                                         <div class="sidebar-widget">
-                                            <h2 class="sw-title">新闻分类</h2>
+                                            <h2 class="sw-title"><a href="index.php?url=category_list.php">新闻分类</a></h2>
                                             <div class="category">
                                                 <?php include("sn-category_list.php"); ?>
                                             </div>

@@ -46,19 +46,21 @@
             
         //提供进行模糊查询的form表单 
         ?> 
-        <form action="index.php?url=news_list.php" method="get" name = 'f1' onsubmit="check()">
-            请输入关键字：<input type="text" name="keyword" value="<?php echo $keyword?>"> 
+        <!-- <form action="index.php?url=news_list.php" method="get" name = 'f1' onsubmit="check()">
+            请输入关键字：<input type="text" name="keyword" value="<?//php echo $keyword?>"> 
             <input type="submit" value="搜索"> 
-            
+             -->
             <br/> 
             
-            <table> 
+            <table class="nl-table"> 
                 <?php 
                 //分页的实现 
                 if($total_records==0){ 
                     echo("暂无记录！"); 
                     //exit("暂无记录！"); 
-                }else{
+                }else{ ?>
+                    <tr><h1 class="sn-title" style="text-align: center;">系统所有新闻如下：</h1></tr>
+                    <?php
                     while($row = mysqli_fetch_array($result_set)){ 
                         ?> 
                         <tr> 

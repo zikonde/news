@@ -29,7 +29,7 @@
             if($result_set){ ?>
                 <div class="col-lg-3">
                     <div class="mn-list">
-                        <h2><a href="index.php?url=news_list.php">阅读更多</a></h2>
+                        <h2><a href="index.php?url=news_list.php&page_size=10">阅读更多</a></h2>
                         <ul>
                             <?php while($row = mysqli_fetch_array($result_set)){ ?>
                                 <li><a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a></li>

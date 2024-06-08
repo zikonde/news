@@ -132,8 +132,11 @@ include_once("functions/is_login.php");
                             <div class="row align-items-center">
                                 <div class="col-lg-12 col-md-4">
                                     <div class="b-search">
-                                        <form action="index.php?url=news_list.php" method="get" name = 'f1' onsubmit="check()">
-                                            <input type="text" name="keyword" placeholder="ËÑË÷">
+                                        <?php
+                                        $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
+                                        ?>
+                                        <form action="news_list.php" method="get" name = 'f1' onsubmit="check()">
+                                            <input type="text" name="keyword" placeholder="ÇëÊäÈëËÑË÷¹Ø¼ü×Ö" value="<?php echo $keyword?>">
                                             <button><i class="fa fa-search"></i></button>
                                         </form> 
                                     </div>

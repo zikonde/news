@@ -49,18 +49,33 @@
           <h1 class="sn-title" style="text-align: center;">系统所有评论信息如下：</h1>
           <br />
 
+          <hr/>
           <?php
-          while($row = $result_set->fetch_array()){ 
-               echo "评论内容：".$row["content"]."<br/>"; 
-               echo "日期：".$row["publish_time"]."&nbsp;&nbsp;"; 
-               echo "IP地址：".$row["ip"]."&nbsp;&nbsp;"; 
-               echo "状态：".$row["state"]."<br/>"; 
-               echo "<a href='review_delete.php?review_id=".$row["review_id"]."' onclick='return confirm(\"确定删除该评论？\")'>删除</a>";
-               echo "&nbsp;&nbsp;&nbsp;"; 
-               if($row["state"]=="未审核"){ 
-                         echo "<a href='review_verify.php?review_id=".$row["review_id"]."'>审核</a>"; 
-               } 
-               echo "<hr/>"; 
+          while($row = $result_set->fetch_array()){ ?>
+               <div class="media">
+                    <img src="img/user.png" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                    <div class="media-body">
+                         <?php 
+                         get_connection();
+                         $user_id = $row["user_id"];
+                         $sql_user = "select name from users where user_id=$user_id"; 
+                         $result_user = $database_connection->query($sql_user); 
+                         $user = ($result_user instanceof mysqli_result? $result_user->fetch_array():["name"=>"未知"]);
+                         close_connection();
+                         ?>
+                         <h6> <a class="text-secondary font-weight-bold" href=""><?=$user["name"]?> </a> <small><i> <?php echo $row["publish_time"]; ?></i></small></h6>
+                         <p><?php echo $row["content"]; ?></p>
+                         <p>IP: <?php echo  $row["ip"] ?></p>
+                         <a href='review_delete.php?review_id=".$row["review_id"]."' onclick='return confirm("确定删除该评论？")'>删除</a>
+                         &emsp;
+                         <?php if($row["state"]=="未审核"){ ?>
+                              <a href='review_verify.php?review_id=".$row["review_id"]."'>审核</a>
+                         <?php } ?>
+                    </div>
+               </div>
+               <hr/>
+               <br>
+               <?php
           } 
           //打印分页导航条
           $url = $_SERVER["REQUEST_URI"]; 
