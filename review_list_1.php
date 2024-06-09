@@ -1,11 +1,11 @@
 <?php 
 include_once("functions/database.php"); 
 $sql = "select * from review order by review_id desc"; 
-get_connection(); 
-$result_set = mysql_query($sql); 
+; 
+$result_set = mysqli_query(get_connection(),$sql); 
 close_connection(); 
 echo "系统所有评论信息如下：<br/>"; 
-while($row = mysql_fetch_array($result_set)){ 
+while($row = mysqli_fetch_array($result_set)){ 
      echo "评论内容：".$row["content"]."<br/>"; 
      echo "日期：".$row["publish_time"]."&nbsp;&nbsp;"; 
      echo "IP地址：".$row["ip"]."&nbsp;&nbsp;"; 

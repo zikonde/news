@@ -1,7 +1,7 @@
 <?php 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
 
 
 if(!is_admin()){ 

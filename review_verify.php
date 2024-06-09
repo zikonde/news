@@ -1,6 +1,6 @@
 <?php 
 include_once("functions/is_login.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
 
 
 session_start(); 
@@ -11,7 +11,8 @@ if(!is_admin()){
 ?> 
 <?php 
 include_once("functions/database.php"); 
-$review_id = $_GET["review_id"]; 
+include_once("functions/get_url_parameters.php"); 
+
 $sql = "update review set state='ÒÑÉóºË' where review_id=$review_id"; 
 get_connection(); 
 $database_connection->query($sql); 

@@ -1,14 +1,9 @@
 
 <?php 
 include_once("functions/database.php"); 
+include_once("functions/get_url_parameters.php");
+include_once("functions/is_login.php");  
 include_once("functions/page.php"); 
-include_once("functions/is_login.php"); 
-
-
-//变量声明
-$page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-$page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-$start = ($page_current-1)*$page_size; 
 
 //构造查询所有新闻的SQL语句
 $search_by_category_sql = "select * from news where category_id=".$category_id." and not news_id = $news_id order by publish_time desc limit $start,$page_size"; 

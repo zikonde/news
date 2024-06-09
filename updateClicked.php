@@ -1,8 +1,7 @@
 <?php
 include_once("functions/database.php"); 
-include_once("url_navigator.php");
-
-$news_id = isset($_GET["news_id"])? intval(addslashes($_GET["news_id"])): 0; 
+include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php"); 
 
 if($news_id!==0){
      //¹¹Ôì3ÌõSQLÓï¾ä 

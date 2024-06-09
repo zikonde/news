@@ -1,6 +1,36 @@
 <?php
 include_once("database.php"); 
 
+function get_news_count($keyword = "", $category_id = ""){
+    $keyword_search = addslashes($keyword);
+
+    //构造查询所有新闻的SQL语句
+    $count_all_sql = "SELECT COUNT(news_id) as 'total records' 
+    from news where (title like '%$keyword_search%' or content like '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')) AND category_id LIKE '%$category_id%' order by news_id"; 
+
+    $database_connection = get_connection(); 
+    $total_records = $database_connection->query("$count_all_sql");
+    $total_records = ($total_records instanceof mysqli_result?$total_records->fetch_array()["total records"]:0); 
+    close_connection(); 
+
+    return $total_records; 
+}
+
+function get_matching($keyword = "", $page_size = 5, $page_current = 1, $category_id = ""){
+    $keyword_search = addslashes($keyword);
+    $start = ($page_current-1)*$page_size; 
+
+    //构造模糊查询新闻的SQL语句 
+    $search_sql = "SELECT * 
+    FROM news WHERE (title LIKE '%$keyword_search%' OR content LIKE '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')) AND category_id LIKE '%$category_id%' ORDER BY news_id DESC LIMIT $start, $page_size";
+
+    $database_connection = get_connection(); 
+    $result_set = $database_connection->query($search_sql); 
+    close_connection(); 
+
+    return $result_set; 
+}
+
 function get_latest($news_id = 0, $page_size = 5, $page_current = 1){
     //变量声明
     $start = ($page_current-1)*$page_size; 

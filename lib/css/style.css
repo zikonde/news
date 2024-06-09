@@ -32,8 +32,20 @@
     padding-bottom: 5em;
 }
 .nl-table tr { 
+    text-align: justify;
     box-shadow: #cccccc 0px 0px 5px 0px;
     padding: 10px;
+}
+
+.nl-table .sw-title {
+    color: #000000;
+    box-shadow: none;
+    height: 5em;
+}
+.nl-table .sw-title h2{
+    padding: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px double #000000;
 }
 
 

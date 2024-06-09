@@ -8,7 +8,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
           
      include_once("functions/session_config.php"); 
      include_once("functions/database.php"); 
-     include_once("url_navigator.php");
+     include_once("functions/url_navigator.php");
 
      $name = addslashes($_POST["name"]);
      $input_password = addslashes($_POST["password"]); 

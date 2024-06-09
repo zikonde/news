@@ -18,6 +18,7 @@
                 } 
                 
                 if (file_exists($url)) include_once($url); 
+                else include_once("error_pages/404.html");
             ?> 
         </div> 
 

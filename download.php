@@ -1,11 +1,11 @@
 <?php 
 include_once("functions/is_login.php");
 include_once("functions/file_system.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php");
 
 if(is_login()){ 
-    if(isset($_GET["attachment"])){ 
-        $file_name = $_GET["attachment"]; 
+    if($file_name){ 
         download("uploads/","$file_name"); 
     }
 }else{ 

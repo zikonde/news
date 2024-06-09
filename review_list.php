@@ -19,15 +19,13 @@
           }else{
           include_once("functions/database.php"); 
           include_once("functions/page.php");
+          include_once("functions/get_url_parameters.php"); 
           
           $sql = "select * from review"; 
           get_connection(); 
           //分页的实现 
           $result_news = $database_connection->query($sql); 
           $total_records = $result_news->num_rows; 
-          $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):3):3);; 
-          $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-          $start = ($page_current-1)*$page_size; 
           
           $result_sql = "select * from review order by review_id desc limit $start,$page_size"; 
           $result_set = $database_connection->query($result_sql); 
@@ -66,10 +64,10 @@
                          <h6> <a class="text-secondary font-weight-bold" href=""><?=$user["name"]?> </a> <small><i> <?php echo $row["publish_time"]; ?></i></small></h6>
                          <p><?php echo $row["content"]; ?></p>
                          <p>IP: <?php echo  $row["ip"] ?></p>
-                         <a href='review_delete.php?review_id=".$row["review_id"]."' onclick='return confirm("确定删除该评论？")'>删除</a>
+                         <a href='review_delete.php?review_id=<?=$row["review_id"]?>' onclick='return confirm("确定删除该评论？")'>删除</a>
                          &emsp;
                          <?php if($row["state"]=="未审核"){ ?>
-                              <a href='review_verify.php?review_id=".$row["review_id"]."'>审核</a>
+                              <a href='review_verify.php?review_id=<?=$row["review_id"]?>'>审核</a>
                          <?php } ?>
                     </div>
                </div>

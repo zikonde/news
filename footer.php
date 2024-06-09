@@ -85,10 +85,6 @@
                     <div class="col-md-6 copyright">
                         <p>版权所有 &copy; <a href="index.php">Web软件开发技术</a> 保留所有权利</p>
                     </div>
-
-                    <div class="col-md-6 template-by">
-                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
                 </div>
             </div>
         </div>

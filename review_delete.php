@@ -1,20 +1,16 @@
 <?php 
 include_once("functions/is_login.php"); 
-include_once("functions/session_config.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php"); 
 
-if(!is_login()){ 
+if(!is_admin()){ 
      echo "请您登录系统后，再访问该页面！"; 
      return; 
 }else{
-     include_once("functions/database.php"); 
-     $review_id = $_GET["review_id"]; 
-     $sql = "delete from review where review_id=$review_id"; 
+     include_once("functions/delete.php"); 
 
-     get_connection(); 
-     $result_set = $database_connection->query($sql); 
-     close_connection(); 
+     delete_review($review_id);
      
-     header("Location:".add_to_url()); 
+     //header("Location:".add_to_url()); 
 } 
 ?> 

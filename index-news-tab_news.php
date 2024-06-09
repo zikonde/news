@@ -20,10 +20,7 @@
                     <div id="featured" class="container tab-pane active">
                         <?php 
                         include_once("functions/get_news.php"); 
-
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
+                        include_once("functions/get_url_parameters.php");
 
                         $result_set = get_latest(0, 3, 1);
                         ?>
@@ -53,10 +50,6 @@
                         <?php 
                         include_once("functions/get_news.php"); 
 
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
                         $result_set = get_popular(0, 3, 2);
                         ?>
                             <?php 
@@ -84,11 +77,7 @@
                     <div id="latest" class="container tab-pane fade">
                         <?php 
                         include_once("functions/get_news.php"); 
-
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
+                        
                         $result_set = get_latest(0, 3, 1);
                         ?>
                             <?php 
@@ -134,10 +123,6 @@
                         <?php 
                         include_once("functions/get_news.php"); 
 
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
                         $result_set = get_most_viewed(0, 3, 1);
                         ?>
                             <?php 
@@ -166,10 +151,6 @@
                         <?php 
                         include_once("functions/get_news.php"); 
 
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
                         $result_set = get_most_viewed(0, 3, 2);
                         ?>
                             <?php 
@@ -197,10 +178,6 @@
                     <div id="m-recent" class="container tab-pane fade">
                         <?php 
                         include_once("functions/get_news.php"); 
-
-                        //变量声明
-                        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-                        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
 
                         $result_set = get_latest(0, 3, 2);
                         ?>

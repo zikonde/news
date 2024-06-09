@@ -11,38 +11,19 @@
             
     <div id="mainfunction"> 
         <?php 
-        include_once("functions/database.php"); 
-        include_once("functions/page.php"); 
-        include_once("functions/is_login.php"); 
-        include_once("functions/session_config.php"); 
+        include_once("functions/get_news.php"); 
+        include_once("functions/get_url_parameters.php"); 
 
         //显示文件上传的状态信息 
         if(isset($_GET["message"])){ 
             echo $_GET["message"]."<br/>"; 
         } 
 
-        //变量声明
-        $page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):3):3); 
-
         //若进行模糊查询，取得模糊查询的关键字keyword 
-        $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
         $keyword_search = addslashes($keyword);
-
-        $page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
-        $start = ($page_current-1)*$page_size; 
-
-        //构造查询所有新闻的SQL语句
-        $count_all_sql = "SELECT COUNT(news_id) as 'total records' from news where title like '%$keyword_search%' or content like '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')  order by news_id"; 
-
-        //构造模糊查询新闻的SQL语句 
-        $search_sql = "SELECT * FROM news WHERE title LIKE '%$keyword_search%' OR content LIKE '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%') ORDER BY news_id DESC LIMIT $start, $page_size";
-        get_connection(); 
-
-        $result_set = $database_connection->query($search_sql); 
-        $total_records = $database_connection->query("$count_all_sql");
-        $total_records = ($total_records instanceof mysqli_result?$total_records->fetch_array()["total records"]:0); 
-        close_connection(); 
+        
+        $total_records =get_news_count($keyword_search);
+        $result_set = get_matching($keyword_search, $page_size, $page_current);  
             
         //提供进行模糊查询的form表单 
         ?> 

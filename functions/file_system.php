@@ -69,7 +69,7 @@ function content_type($extension){
      } 
 } 
 function download($file_dir,$file_name){ 
-	include_once("../url_navigator.php");
+	include_once("url_navigator.php");
 
      if (!file_exists($file_dir.$file_name)) { //检查文件是否存在  
 			header('location:'.add_to_url(["message"=>"文件不存在或已删除"]));

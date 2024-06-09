@@ -3,53 +3,40 @@ include_once("functions/database.php");
 include_once("functions/page.php"); 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
+include_once("functions/get_url_parameters.php");
 
 //显示文件上传的状态信息 
 if(isset($_GET["message"])){ 
     echo $_GET["message"]."<br/>"; ?>
 <?php } 
 
-//变量声明
-$page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):3):3); 
-$page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-$start = ($page_current-1)*$page_size; 
+
+
+$sql = "SELECT category_id, name, description from category WHERE category_id LIKE '%$category_id%'";
 
 //构造查询所有新闻的SQL语句
 get_connection();
-$result_categories = $database_connection->query("select category_id, name from category");
-
-$search_all_sql = [];
+$result_categories = $database_connection->query($sql);
+close_connection();
+$total_records_by_category = [];
 while($categories = mysqli_fetch_assoc($result_categories)){
-    $search_all_sql[] = "select COUNT(news_id) as 'total records1' from news where category_id=".$categories['category_id']; 
+    $total_records_by_category[] = get_news_count("", $categories['category_id']);
 }
 
 //构造模糊查询新闻的SQL语句 
-$result_categories = $database_connection->query("select category_id, name from category");
-$search_by_category_sql = [];
-while($categories = mysqli_fetch_assoc($result_categories)){
-    $search_by_category_sql[] = "select * from news where category_id=".$categories['category_id']." order by news_id desc limit $start,$page_size"; 
-}
-
+get_connection();
+$result_categories = $database_connection->query($sql);
+close_connection();
 $result_search_by_category_set = [];
-for($i=0;$i<=count($search_by_category_sql)-1;$i++){
-    $result_search_by_category_set[] = $database_connection->query($search_by_category_sql[$i]);
-}
-// var_dump(mysqli_fetch_all($result_search_by_category_set[1]));
-
-
-$total_records_by_category = [];
-for($i=0;$i<=count($search_all_sql)-1;$i++){
-    $total_records_n = $database_connection->query($search_all_sql[$i]);
-    $total_records_n = ($total_records_n instanceof mysqli_result?$total_records_n->fetch_array()["total records1"]:0); 
-    $total_records_by_category[] = $total_records_n;
+while($categories = mysqli_fetch_assoc($result_categories)){
+    $result_search_by_category_set[] = get_matching("", $page_size, $page_current, $categories['category_id']);
 }
 
 
-
-
+get_connection();
 // $total_records2 = $database_connection->query("$search_all_sql2");
 // $total_records2 = ($total_records2 instanceof mysqli_result?$total_records2->fetch_array()["total records2"]:0); 
-$result_categories = $database_connection->query("select category_id, name from category");
+$result_categories = $database_connection->query($sql);
 close_connection(); 
     
 //提供进行模糊查询的form表单 
@@ -65,9 +52,13 @@ for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
 
                 <?php
                 for($j = 0; $j < 2; $j++){
-                    $cat_name = mysqli_fetch_assoc($result_categories)["name"];?>
+                    $cat = mysqli_fetch_assoc($result_categories);
+                    $cat_name = $cat["name"];
+                    $cat_id = $cat["category_id"];
+                    $cat_title = mb_strcut($cat["description"],0,80,"gbk")."...";
+                    ?>
                     <div class="col-md-6">
-                        <h2><?=$cat_name?></h2>
+                        <h2><a href="index.php?url=category_list.php&category_id=<?=$cat_id?>&page_size=10" title="<?=$cat_title ?>"><?=$cat_name?></a></h2>
                         <div class="row cn-slider">
 
                             <?php 
@@ -75,7 +66,7 @@ for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
                                 <div>
                                     <div>
                                         <div>
-                                            <a href="">类栏目暂无新闻！</a>
+                                            类栏目暂无新闻！
                                         </div>
                                     </div>
                                 </div>
