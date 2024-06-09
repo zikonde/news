@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>新闻浏览</title>
+    <link href="img/favicon.ico" rel="icon">
 </head>
 <body>
         
@@ -13,11 +14,6 @@
         <?php 
         include_once("functions/get_news.php"); 
         include_once("functions/get_url_parameters.php"); 
-
-        //显示文件上传的状态信息 
-        if(isset($_GET["message"])){ 
-            echo $_GET["message"]."<br/>"; 
-        } 
 
         //若进行模糊查询，取得模糊查询的关键字keyword 
         $keyword_search = addslashes($keyword);
@@ -49,7 +45,7 @@
                             <img src="<?php echo $row['thumbnail'];?>" width="150px"> 
                             </td>
                             <td> 
-                            <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
+                            <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
                             </td>
                             <?php 
                             if(is_admin()){ 

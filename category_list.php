@@ -40,7 +40,8 @@ close_connection();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>分类浏览</title>
+    <link href="img/favicon.ico" rel="icon">
 </head>
 <body>
         
@@ -64,7 +65,7 @@ close_connection();
                     $cat_title = $cat["description"];
                     ?>
                     <tr class="sw-title">
-                        <td colspan='4'><h2 title="<?=$cat_title ?>"><?=$cat_name?>栏目</h2></td>
+                        <td colspan='4'><h2 title="<?=$cat_title ?>"><a href="index.php?url=category_list.php&category_id=<?=$cat_id?>&page_size=10"><?=$cat_name?>栏目</a></h2></td>
                         <td><a href="index.php?url=category_delete.php&category_id =<?=$cat_id?>"  onclick='return confirm("该操作也会删除分类里面的所有新闻，确定删除该分类？")'><i class="fa-regular fa-trash-can"></i></a></td>
                     </tr>
 

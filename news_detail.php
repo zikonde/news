@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap News Template - Free HTML Templates</title>
+        <title>新闻详细</title>
+        <link href="img/favicon.ico" rel="icon">
     </head>
 
     <body>
@@ -80,7 +81,7 @@
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">首页</a></li>
                                 <li class="breadcrumb-item"><a href="index.php?url=category_list.php">新闻</a></li>
-                                <li class="breadcrumb-item"><a href="#"><?php echo $category_name;?></a></li>
+                                <li class="breadcrumb-item"><a href="index.php?url=category_list.php&category_id=<?=$category_id?>&page_size=10"><?php echo $category_name;?></a></li>
                                 <li class="breadcrumb-item active"><?=$title?></li>
                             </ul>
                         </div>
@@ -191,7 +192,7 @@
                                             <div class="tab-news">
                                                 <ul class="nav nav-pills nav-justified">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" data-toggle="pill" href="#featured">Featured</a>
+                                                        <a class="nav-link active" data-toggle="pill" href="#featured">特色新闻</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" data-toggle="pill" href="#popular"><i class="fa-solid fa-fire"></i> 热门</a>

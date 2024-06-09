@@ -30,7 +30,7 @@ include_once("functions/session_config.php");
     <!-- Template Stylesheet -->
     <link href="lib/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body onload="showMessage()">
     <!-- Top Bar Start -->
     <!-- 
     <div class="top-bar">
@@ -156,6 +156,8 @@ include_once("functions/session_config.php");
     </div>
     <!-- Nav Bar End -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         var page_size = document.getElementsByName("page_size")[0];
         if(page_size){
@@ -213,7 +215,34 @@ include_once("functions/session_config.php");
             
             document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
         }
-        </script>
+
+        $(document).ready(function() {
+        $("a").click(function(event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            const url = new URL(this.href); // Use `this` to reference the clicked link
+            const newsId = url.searchParams.get("news_id");
+
+            $.ajax({
+            url: "updateClicked.php",
+            type: "POST",
+            data: { news_id: url }, // Send data as an object
+            dataType: "json", // Optional: Expect JSON response from server (if applicable)
+            success: function(response) {
+                if (typeof response === "object") {
+                // Handle successful JSON response from updateclicked.php (optional)
+                console.log("Data sent successfully! Response:", response);
+                } else {
+                console.log("Data sent successfully! (non-JSON response)");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error sending data:", textStatus, errorThrown);
+            }
+            });
+        });
+        });
+    </script>
 </body>
 </html>
         
