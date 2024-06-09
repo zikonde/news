@@ -2,7 +2,7 @@
 include_once("functions/database.php"); 
 include_once("functions/url_navigator.php");
 include_once("functions/get_url_parameters.php"); 
-var_dump($_GET);
+var_dump($_GET);    
 if($news_id!==0){
      //ππ‘Ï3ÃıSQL”Ôæ‰ 
      $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id"; 
