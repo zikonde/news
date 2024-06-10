@@ -8,10 +8,12 @@ create database news;
 use news; 
 create table category( 
      category_id int auto_increment primary key, 
-     name char(20) not null 
+     name char(20) not null, 
+     description char(255) not null
 ); 
 create table users( 
      user_id int auto_increment primary key, 
+     role CHAR( 6 ) NOT NULL DEFAULT 'user',
      name char(20) not null, 
      password char(32) 
 ); 
@@ -24,15 +26,19 @@ create table news(
      publish_time datetime, 
      clicked int, 
      attachment char(100), 
+     thumbnail CHAR( 255 ) NOT NULL DEFAULT 'images/thumbnail.jpg',
+
      constraint FK_news_user foreign key (user_id) references users(user_id), 
      constraint FK_news_category foreign key (category_id) references category(category_id) 
 ); 
 create table review( 
      review_id int auto_increment primary key, 
      news_id int, 
+     user_id int, 
      content text, 
      publish_time datetime, 
      state char(10), 
      ip char(15), 
-     constraint FK_review_news foreign key (news_id) references news(news_id) 
+     constraint FK_review_news foreign key (news_id) references news(news_id), 
+     constraint FK_review_news foreign key (user_id) references news(user_id) 
 ); 

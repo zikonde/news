@@ -1,0 +1,11 @@
+1. 描述
+xmind流程图
+-different colors representing what users and admin can access
+解释
+
+2. github操作记录
+截图/导出
+
+3. 视频（分功能）
+添加字幕
+

@@ -1,4 +1,7 @@
 <?php
+if($_SERVER["PHP_SELF"] === "/functions/session_config.php"){
+  header("location:../index.php");
+}
 
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

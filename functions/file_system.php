@@ -1,4 +1,8 @@
 <?php 
+if($_SERVER["PHP_SELF"] === "/functions/file_system.php"){
+  header("location:../index.php");
+}
+
 function upload($file,$file_path){ 
      $error = $file['error']; 
      switch ($error){ 
@@ -65,8 +69,11 @@ function content_type($extension){
      } 
 } 
 function download($file_dir,$file_name){ 
+	include_once("url_navigator.php");
+
      if (!file_exists($file_dir.$file_name)) { //检查文件是否存在  
-     		exit("文件不存在或已删除");  
+			header('location:'.add_to_url(["message"=>"文件不存在或已删除"]));
+     		exit();  
      } else { 
      		$file = fopen($file_dir.$file_name,"r"); // 打开文件  
      		//取得文件的扩展名 
