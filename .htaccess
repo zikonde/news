@@ -1,0 +1,3 @@
+RewriteOptions inherit
+ErrorDocument 404 404.html
+RewriteEngine On
