@@ -47,8 +47,13 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                &emsp; 
                <input type="submit" value="µÇÂ¼" /> 
                &emsp; 
-               <a href="#"> ×¢²á</a> 
+               <a href="#" onclick="toggleSignup()" class="signup-btn">×¢²á</a>
           </form>  
  <?php 
      }  
 } ?>
+
+    <!-- Hidden Signup Div -->
+    <div id="signup" style="display: none;">
+        <?php include_once("signup.php"); ?>
+    </div>

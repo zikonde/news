@@ -1,0 +1,60 @@
+.error_msg{
+    color: rgb(255, 102, 102);
+    font-size:xx-small;
+    text-align:right;
+}
+.registration-form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;  
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    max-width: fit-content;
+    max-height: fit-content;
+    min-width: fit-content;
+    min-height: fit-content;
+    border: 3px solid #cc4444;
+    position: fixed;
+    inset: 0px;
+    margin: auto;
+    z-index: 9999;
+}
+.registration-form .section-label {
+    color: #FF6F61;
+    margin-bottom: 20px;
+    text-align: left;
+    color:grey;
+    
+}
+
+input {
+    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #cc4444;
+    margin: 2px;
+    padding: 4px 10px;
+    max-width: 100%;
+}
+#formhide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+}
+
+.brand .signup-btn {
+    color: #FF6F61;
+    background: #facac6;
+    border: 1px solid #FF6F61;
+    border-radius: 4px 4px;
+    padding: 13px 15px;
+}
+
+.brand .signup-btn:hover {
+    color: #ffffff;
+    background: #FF6F61;
+    border-color: #FF6F61;
+}

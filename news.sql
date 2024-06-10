@@ -15,7 +15,10 @@ create table users(
      user_id int auto_increment primary key, 
      role CHAR( 6 ) NOT NULL DEFAULT 'user',
      name char(20) not null, 
-     password char(32) 
+     email VARCHAR( 255 ) NOT NULL,
+     password char(32), 
+     sex CHAR( 3 ) NULL, 
+     DOB DATE NULL
 ); 
 create table news( 
      news_id int auto_increment primary key, 

@@ -5,13 +5,6 @@ include_once("functions/is_login.php");
 include_once("functions/session_config.php"); 
 include_once("functions/get_url_parameters.php");
 
-//显示文件上传的状态信息 
-if(isset($_GET["message"])){ 
-    echo $_GET["message"]."<br/>"; ?>
-<?php } 
-
-
-
 $sql = "SELECT category_id, name, description from category WHERE category_id LIKE '%$category_id%'";
 
 //构造查询所有新闻的SQL语句

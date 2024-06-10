@@ -43,7 +43,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                 function create_tables($database_connection, $database){
                     $database_connection->select_db("$database");
 
-                    $create_category_table = "create table category( 
+                    $create_category_table = "CREATE table category( 
                         category_id int auto_increment primary key, 
                         name char(20) not null,
                         description char(255) not null 
@@ -57,11 +57,14 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         die( "表category建起失败： " . $database_connection->error."<br>");
                     }
 
-                    $create_users_table = "create table users( 
+                    $create_users_table = "CREATE table users( 
                         user_id int auto_increment primary key, 
                         role CHAR( 6 ) NOT NULL DEFAULT 'user',
                         name char(20) not null, 
-                        password char(32) 
+                        email VARCHAR( 255 ) NOT NULL,
+                        password char(32), 
+                        sex CHAR( 3 ) NULL, 
+                        DOB DATE NULL
                     );"; 
                     if ($database_connection->query($create_users_table)) {
                         // echo "成功建起表users"."<br>";
@@ -69,11 +72,11 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         $Zikonde_pwd = md5(md5("123"));
                         $dwq_pwd = md5(md5("123"));
 
-                        $InsertSQL =    "Insert into users ( user_id, name, password) 
+                        $InsertSQL =    "INSERT into users ( user_id, name, password) 
                                         values
-                                            (null, 'admin', 'admin', '$admin_pwd'),
-                                            (null, 'admin', 'Zikonde', '$Zikonde_pwd'),
-                                            (null, 'admin', 'dwq', '$dwq_pwd')";
+                                            (null, 'admin', 'admin', '$admin_pwd', '男', '2000-01-01'),
+                                            (null, 'admin', 'Zikonde', '$Zikonde_pwd', null, null),
+                                            (null, 'admin', 'dwq', '$dwq_pwd', null, null)";
                         // echo "成功添加users表初始化数据"."<br>"; 
 
                         $database_connection->query($InsertSQL);
@@ -81,7 +84,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         die( "表users建起失败： " . $database_connection->error."<br>");
                     }
 
-                    $create_news_table = "create table news( 
+                    $create_news_table = "CREATE table news( 
                         news_id int auto_increment primary key, 
                         user_id int, 
                         category_id int, 
@@ -100,7 +103,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
                         die( "表news建起失败： " . $database_connection->error."<br>");
                     }
 
-                $create_review_table = "create table review( 
+                $create_review_table = "CREATE table review( 
                         review_id int auto_increment primary key, 
                         news_id int, 
                         user_id int, 

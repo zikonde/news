@@ -4,6 +4,7 @@ include_once("functions/database.php");
 include_once("functions/page.php"); 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
+include_once("functions/url_navigator.php");
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ include_once("functions/session_config.php");
     <link href="lib/css/style.css" rel="stylesheet">
 </head>
 <body onload="showMessage()">
+    
     <!-- Top Bar Start -->
     <!-- 
     <div class="top-bar">
@@ -159,13 +161,27 @@ include_once("functions/session_config.php");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("√‹¬Î≤ª∆•≈‰");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+        
         var page_size = document.getElementsByName("page_size")[0];
         if(page_size){
             page_size.value= <?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
         }
 
         function showMessage() {
-            var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
+            var message = '<?=$message; ?>';
             if(message != '') {
                 alert(message);
                 const url = window.location;
@@ -209,39 +225,40 @@ include_once("functions/session_config.php");
             }
             return true;
         }
-        
-        function updateClicked(hreflink){
-            var news_id = new URLSearchParams(hreflink).get('news_id');
-            
-            document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
-        }
 
         $(document).ready(function() {
-        $("a").click(function(event) {
-            event.preventDefault(); // Prevent default link behavior
+            $("a").click(function(event) {
 
-            const url = new URL(this.href); // Use `this` to reference the clicked link
-            const newsId = url.searchParams.get("news_id");
+                const url = new URL(this.href); // Use `this` to reference the clicked link
+                const newsId = url.searchParams.get("news_id");
 
-            $.ajax({
-            url: "updateClicked.php",
-            type: "POST",
-            data: { news_id: url }, // Send data as an object
-            dataType: "json", // Optional: Expect JSON response from server (if applicable)
-            success: function(response) {
-                if (typeof response === "object") {
-                // Handle successful JSON response from updateclicked.php (optional)
-                console.log("Data sent successfully! Response:", response);
-                } else {
-                console.log("Data sent successfully! (non-JSON response)");
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error("Error sending data:", textStatus, errorThrown);
-            }
+                $.ajax({
+                    url: "updateClicked.php",
+                    type: "POST",
+                    data: { news_id: newsId }, // Send data as an object
+                    success: function(response) {
+                        if (typeof response === "object") {
+                            // Handle successful JSON response from updateclicked.php (optional)
+                            console.log("Data sent successfully! Response:", response);
+                        } else {
+                            console.log("Data sent successfully! (non-JSON response)");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error sending data:", textStatus, errorThrown);
+                    }
+                });
             });
         });
-        });
+
+        function toggleSignup() {
+            var signupDiv = document.getElementById("signup");
+            if (signupDiv.style.display === "none") {
+                signupDiv.style.display = "block";
+            } else {
+                signupDiv.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
