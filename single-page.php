@@ -12,8 +12,7 @@
     <div id="mainfunction"> 
           <?php 
           include_once("functions/database.php"); 
-
-          $news_id = isset($_GET["news_id"])?$_GET["news_id"]:0; 
+          include_once("functions/get_url_parameters.php"); 
 
           if($news_id==0){ 
                echo "该新闻不存在或已被删除！"; 
@@ -59,8 +58,7 @@
                $title = $news['title']; 
                $content = $news['content']; 
                $user = $user['name'];
-               if(isset($_GET["keyword"])){ 
-                    $keyword = $_GET["keyword"]; 
+               if($keyword){ 
                     $replacement = "<span style='color: red'><b><i>".$keyword."</b></i></span>";  
                     $title = str_replace($keyword,$replacement,$title); 
                     $content = str_replace($keyword,$replacement,$content); 

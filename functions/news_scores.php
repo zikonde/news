@@ -50,6 +50,8 @@ $newsItem1 = [
 $trendingScore = calculateTrendingScore($newsItem1);
 
 echo "新闻项目的热门度得分：" . $trendingScore . PHP_EOL;
+echo "<br>";
+
 
 
 
@@ -72,7 +74,7 @@ function calculateFeaturedScore($featuredData) {
   // 定义每个因素的权重（根据需要进行调整）
   $weightPopularity = 0.5;
   $weightEngagement = 0.3;
-  $weightCategoryRelevance (float): 基于类别相关性的因素（手动设置）;
+  $weightCategoryRelevance =1;//(float): 基于类别相关性的因素（手动设置）;
 
   // 根据加权因素计算分数
   $featuredScore = ($featuredData['popularity'] * $weightPopularity) + 
@@ -96,6 +98,8 @@ $weightCategoryRelevance = 0.2; // 科学类别的假设相关性权重
 $featuredScore = calculateFeaturedScore($featuredNews, $weightCategoryRelevance);
 
 echo "特色新闻的分数: " . $featuredScore . PHP_EOL;
+echo "<br>";
+
 
 
 
@@ -129,6 +133,50 @@ $featuredNewsCategory = "科技";
 $weightCategoryRelevance = getCategoryRelevance($featuredNewsCategory);
 
 echo "类别 '$featuredNewsCategory' 的相关性分数: " . $weightCategoryRelevance . PHP_EOL;
+echo "<br>";
+
+
+
+
+
+
+function calculateRelevance($articleTitle, $categories) {
+  $scores = [];
+
+  foreach ($categories as $category => $keywords) {
+    $score = 0;
+    $words = explode(" ", strtolower($articleTitle)); // Convert to lowercase for case-insensitive matching
+
+    foreach ($keywords as $keyword) {
+      $score += count(array_keys($words, $keyword)); // Count occurrences of each keyword
+    }
+
+    $scores[$category] = $score;
+  }
+
+  // Find category with highest score
+  $maxScore = max($scores);
+  $relevantCategory = array_search($maxScore, $scores);
+
+  return [
+    'category' => $relevantCategory,
+    'score' => $maxScore,
+  ];
+}
+
+// Example usage
+$articleTitle = "company Scientists Develop investment commercialization Revolutionary development Solar Panel Material development";
+$categories = [
+  "Science" => ["science", "research", "discovery", "scientist", "laboratory"],
+  "Technology" => ["technology", "innovation", "gadget", "development", "engineering"],
+  "Business" => ["company", "market", "investment", "commercialization", "industry"],
+];
+
+$relevance = calculateRelevance($articleTitle, $categories);
+
+echo "Most relevant category: " . $relevance['category'] . " with a score of " . $relevance['score'];
+echo "<br>";
+
 
 
 

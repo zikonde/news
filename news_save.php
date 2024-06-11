@@ -1,11 +1,11 @@
 <?php 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
 
 
 if(!is_admin()){ 
-     echo "请您登录系统后，再访问该页面！"; 
+     include_once("error_pages/404.html"); 
      return; 
 } else{
      include_once("functions/file_system.php"); 

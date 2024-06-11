@@ -3,6 +3,8 @@
 include_once("functions/database.php"); 
 include_once("functions/page.php"); 
 include_once("functions/is_login.php"); 
+include_once("functions/session_config.php"); 
+include_once("functions/url_navigator.php");
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,8 @@ include_once("functions/is_login.php");
     <!-- Template Stylesheet -->
     <link href="lib/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body onload="showMessage()">
+    
     <!-- Top Bar Start -->
     <!-- 
     <div class="top-bar">
@@ -100,10 +103,12 @@ include_once("functions/is_login.php");
                         ?>
                         <a href="index.php" class="nav-item nav-link <?php if ($url == "index.php" or $url == "news.php")echo "active"?>">首页</a>
 
-                        <a href="index.php?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a>
+                        <?php if(is_admin()){ ?><a href="index.php?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a> <?php } ?>
+
+                        <a href="index.php?url=news_list.php&page_size=10" class="nav-item nav-link <?php if ($url == "news_list.php")echo "active"?>">新闻浏览</a>
 
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">分类浏览</a>
+                            <a href="#" class="nav-link dropdown-toggle <?php if ($url == "category_list.php")echo "active"?>"" data-toggle="dropdown">分类浏览</a>
                             <div class="dropdown-menu">
                                 <a href="index.php?url=category_list.php" class="dropdown-item">所有分类 (All)</a>
                                 <?php 
@@ -112,15 +117,17 @@ include_once("functions/is_login.php");
                                 $result_set = $database_connection->query($sql);
                                 close_connection();
                                 while($row = mysqli_fetch_array($result_set)){ ?>
-                                    <a href="#" class="dropdown-item"><?php echo $row['name']?></a>
+                                    <a href="index.php?url=category_list.php&category_id=<?=$row['category_id']?>&page_size=10" class="dropdown-item"><?php echo $row['name']?></a>
                                 <?php  }
                                 ?>
                             </div>
                         </div>
 
-                        <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
+                        <?php if(is_admin()){ ?>
+                            <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
 
-                        <a href="index.php?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
+                            <a href="index.php?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
+                        <?php } ?>
 
                         <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
                     </div>
@@ -135,6 +142,7 @@ include_once("functions/is_login.php");
                                         <?php
                                         $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
                                         ?>
+                                        <!-- //提供进行模糊查询的form表单  -->
                                         <form action="news_list.php" method="get" name = 'f1' onsubmit="check()">
                                             <input type="text" name="keyword" placeholder="请输入搜索关键字" value="<?php echo $keyword?>">
                                             <button><i class="fa fa-search"></i></button>
@@ -150,14 +158,30 @@ include_once("functions/is_login.php");
     </div>
     <!-- Nav Bar End -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
+        var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("密码不匹配");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+        
         var page_size = document.getElementsByName("page_size")[0];
         if(page_size){
             page_size.value= <?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
         }
 
         function showMessage() {
-            var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
+            var message = '<?=$message; ?>';
             if(message != '') {
                 alert(message);
                 const url = window.location;
@@ -201,13 +225,41 @@ include_once("functions/is_login.php");
             }
             return true;
         }
-        
-        function updateClicked(hreflink){
-            var news_id = new URLSearchParams(hreflink).get('news_id');
-            
-            document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
+
+        $(document).ready(function() {
+            $("a").click(function(event) {
+
+                const url = new URL(this.href); // Use `this` to reference the clicked link
+                const newsId = url.searchParams.get("news_id");
+
+                $.ajax({
+                    url: "updateClicked.php",
+                    type: "POST",
+                    data: { news_id: newsId }, // Send data as an object
+                    success: function(response) {
+                        if (typeof response === "object") {
+                            // Handle successful JSON response from updateclicked.php (optional)
+                            console.log("Data sent successfully! Response:", response);
+                        } else {
+                            console.log("Data sent successfully! (non-JSON response)");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error sending data:", textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+
+        function toggleSignup() {
+            var signupDiv = document.getElementById("signup");
+            if (signupDiv.style.display === "none") {
+                signupDiv.style.display = "block";
+            } else {
+                signupDiv.style.display = "none";
+            }
         }
-        </script>
+    </script>
 </body>
 </html>
         

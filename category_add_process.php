@@ -5,7 +5,7 @@ if($_SERVER["PHP_SELF"] === "/category_add_process.php"){
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
           include_once("functions/database.php");
           include_once("functions/is_login.php"); 
-          include_once("url_navigator.php");
+          include_once("functions/url_navigator.php");
 
 
           if(!is_login()){ 

@@ -46,7 +46,14 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                <input type="checkbox" name="expire" value="3600" checked/> Cookie±£´æ1Ð¡Ê±
                &emsp; 
                <input type="submit" value="µÇÂ¼" /> 
+               &emsp; 
+               <a href="#" onclick="toggleSignup()" class="signup-btn">×¢²á</a>
           </form>  
  <?php 
      }  
 } ?>
+
+    <!-- Hidden Signup Div -->
+    <div id="signup" style="display: none;">
+        <?php include_once("signup.php"); ?>
+    </div>

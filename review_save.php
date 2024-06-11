@@ -1,5 +1,5 @@
 <?php 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
 include_once("functions/session_config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once("functions/database.php"); 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap News Template - Free HTML Templates</title>
+        <title>新闻详细</title>
+        <link href="img/favicon.ico" rel="icon">
     </head>
 
     <body>
@@ -12,9 +13,8 @@
                 
         <div id="mainfunction" style="text-align: justify;"> 
             <?php 
-            include_once("functions/database.php"); 
-
-            $news_id = isset($_GET["news_id"])? addslashes(intval($_GET["news_id"])):0; 
+            include_once("functions/database.php");
+            include_once("functions/get_url_parameters.php"); 
 
             if($news_id==0){ 
                 echo "该新闻不存在或已被删除！"; 
@@ -66,8 +66,7 @@
                     $attatchment = urlencode($news['attachment']);
                     $category_name = $category['name'];
         
-                    if(isset($_GET["keyword"])){ 
-                        $keyword = addslashes($_GET["keyword"]); 
+                    if($keyword){ 
                         $replacement = "<span style='color: red'><b><i>".$keyword."</b></i></span>";  
                         $title = str_replace($keyword,$replacement,$title); 
                         $content = str_replace($keyword,$replacement,$content); 
@@ -80,9 +79,9 @@
                     <div class="breadcrumb-wrap">
                         <div class="container">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">首页</a></li>
-                                <li class="breadcrumb-item"><a href="#">新闻</a></li>
-                                <li class="breadcrumb-item"><a href="#"><?php echo $category_name;?></a></li>
+                                <li class="breadcrumb-item"><a href="index.php">首页</a></li>
+                                <li class="breadcrumb-item"><a href="index.php?url=category_list.php">新闻</a></li>
+                                <li class="breadcrumb-item"><a href="index.php?url=category_list.php&category_id=<?=$category_id?>&page_size=10"><?php echo $category_name;?></a></li>
                                 <li class="breadcrumb-item active"><?=$title?></li>
                             </ul>
                         </div>
@@ -99,6 +98,22 @@
                                             <div><i class="fa-regular fa-calendar-days"></i>&nbsp; <?php echo $news['publish_time'];?></div>
                                             &emsp;
                                             <div><i class="fa-solid fa-user"></i>&nbsp; 发布者：<?php echo ($user) ;?></div>
+                                            &emsp;
+                                            &emsp;
+                                            <div>
+                                                &nbsp; 
+                                                <?php if(is_admin()){ 
+                                                ?> 
+                                                    <td> 
+                                                    
+                                                    <a href="index.php?url=news_add.php&news_id=<?=$news_id?>"><i class="fa-regular fa-pen-to-square"></i>&nbsp; 编辑</a> 
+                                                    </td> 
+                                                    &emsp;
+                                                    <td> 
+                                                    <a href="index.php?url=news_delete.php&news_id=<?=$news_id?>" onclick="return confirm('确定删除吗？');"><i class="fa-regular fa-trash-can"></i>&nbsp; 删除</a> 
+                                                    </td> 
+                                                <?php } ?> 
+                                            </div>
                                         </div>
 
                                         <hr />
@@ -177,7 +192,7 @@
                                             <div class="tab-news">
                                                 <ul class="nav nav-pills nav-justified">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" data-toggle="pill" href="#featured">Featured</a>
+                                                        <a class="nav-link active" data-toggle="pill" href="#featured">特色新闻</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" data-toggle="pill" href="#popular"><i class="fa-solid fa-fire"></i> 热门</a>

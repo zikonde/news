@@ -6,8 +6,8 @@ include_once("functions/is_login.php");
 
 
 //构造查询所有新闻的SQL语句
-$sql = "SELECT category.name, Count(news.news_id) AS total_news\n"
-    . "FROM category INNER JOIN news ON category.category_id = news.category_id\n"
+$sql = "SELECT category.category_id, category.name, Count(news.news_id) AS total_news\n"
+    . "FROM category LEFT JOIN news ON category.category_id = news.category_id\n"
     . "GROUP BY category.name ORDER BY total_news DESC";
 
 get_connection();
@@ -26,7 +26,7 @@ close_connection();
         <?php 
     }else{
         while($row = mysqli_fetch_array($result_set)){ ?>
-            <li><a href=""><?php echo $row['name']?></a><span>(<?php echo $row['total_news']?>)</span></li>
+            <li><a href="index.php?url=category_list.php&category_id=<?=$row['category_id']?>&page_size=10" ><?php echo $row['name']?></a><span>(<?php echo $row['total_news']?>)</span></li>
         <?php  }
     }
     ?>

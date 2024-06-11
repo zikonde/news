@@ -8,7 +8,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
           
      include_once("functions/session_config.php"); 
      include_once("functions/database.php"); 
-     include_once("url_navigator.php");
+     include_once("functions/url_navigator.php");
 
      $name = addslashes($_POST["name"]);
      $input_password = addslashes($_POST["password"]); 
@@ -38,7 +38,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
 
           get_connection(); 
           $password = md5($first_password);
-          $sql = "select * from users where name='$name' and password ='$password'";
+          $sql = "select * from users where (name='$name' or email = '$name') and password ='$password'";
           $result_set = $database_connection->query($sql); 
 
           if($result_set->num_rows>0){ 

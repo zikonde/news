@@ -2,7 +2,6 @@
 <div>
      <?php 
      include_once("functions/database.php"); 
-     $news_id = intval(addslashes($_GET["news_id"])); 
      $sql = "select * from review where news_id=$news_id and state='ÒÑÉóºË' order by publish_time desc limit 50"; 
      get_connection(); 
      $result_set = $database_connection->query($sql); 
@@ -33,10 +32,8 @@
                     <p><?php echo $row["content"]; ?></p>
                     <p>IP: <?php echo  $row["ip"] ?></p>
                     <!-- <p>IP: <?#php echo (isset($city)?$city:"Î´Öª") ?></p> -->
-                    <button class="btn btn-sm btn-outline-secondary">Reply</button>
                </div>
           </div>
-          <br />
-          <br />
+               <hr>
      <?php } ?> 
 </div>

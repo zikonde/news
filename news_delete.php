@@ -1,19 +1,15 @@
 <?php 
 include_once("functions/is_login.php"); 
-include_once("functions/session_config.php"); 
-include_once("url_navigator.php");
+include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php");
 
-if(!is_login()){ 
-     echo "请您登录系统后，再访问该页面！"; 
+if(!is_admin()){ 
+     include_once("error_pages/404.html"); 
      return; 
 }else{
-     include_once("functions/database.php"); 
-     $news_id = $_GET["news_id"]; 
+     include_once("functions/delete.php"); 
 
-     get_connection(); 
-     mysqli_query($database_connection, "delete from review where news_id=$news_id"); 
-     mysqli_query($database_connection, "delete from news where news_id=$news_id"); 
-     close_connection(); 
+     delete_news($news_id); 
 
      $message = "新闻及相关评论信息删除成功！"; 
      header("Location:".add_to_url(["message" => $message])); 

@@ -1,11 +1,6 @@
 <?php 
 include_once("functions/get_news.php"); 
-
-
-//±äÁ¿ÉùÃ÷
-$page_size = (isset($_GET["page_size"])? (intval($_GET["page_size"])>0?intval($_GET["page_size"]):5):5); 
-$page_current = (isset($_GET["page_current"])?(intval($_GET["page_current"])>0?intval($_GET["page_current"]):1):1); 
-
+include_once("functions/get_url_parameters.php"); 
 
 $result_set = get_popular($news_id, $page_size, $page_current); 
 $total_records = get_popular($news_id, $page_size, $page_current);
