@@ -1,7 +1,7 @@
 <?php 
 
 function add_to_url($includes = 0, $url = 0){
-    $parsed_url = ($url === 0? parse_url(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:""):parse_url($url));  
+    $parsed_url = ($url === 0? parse_url(isset($_SERVER['HTTP_REFERER'])?($_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:"index.php"):"index.php"):parse_url($url));  
     
     $next_url =  $parsed_url['path']."?".(isset($parsed_url['query'])? $parsed_url['query']:"");
 

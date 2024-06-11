@@ -8,6 +8,25 @@
                 <div class="row tn-slider">
 
                     <?php 
+                    $popular = get_xi(1, 1);
+
+                    if (mysqli_num_rows($popular) > 0) { 
+                        $row = mysqli_fetch_assoc($popular);
+                        $newsId = $row["news_id"];
+                        $title = $row["title"];
+                        $thumbnail = $row["thumbnail"];?>
+
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="<?= $thumbnail ?>" />
+                                <div class="tn-title">
+                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    <?php 
                     $popular = get_popular(0, 1, 1);
 
                     if (mysqli_num_rows($popular) > 0) { 

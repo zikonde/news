@@ -16,6 +16,20 @@ function get_news_count($keyword = "", $category_id = ""){
     return $total_records; 
 }
 
+function get_xi($page_size = 5, $page_current = 1, $category_id = ""){
+    $start = ($page_current-1)*$page_size; 
+
+    //构造模糊查询新闻的SQL语句 
+    $search_sql = "SELECT * 
+    FROM news WHERE title LIKE '%习近平%' AND category_id LIKE '%$category_id%' ORDER BY news_id DESC LIMIT $start, $page_size";
+
+    $database_connection = get_connection(); 
+    $result_set = $database_connection->query($search_sql); 
+    close_connection(); 
+
+    return $result_set; 
+}
+
 function get_matching($keyword = "", $page_size = 5, $page_current = 1, $category_id = ""){
     $keyword_search = addslashes($keyword);
     $start = ($page_current-1)*$page_size; 

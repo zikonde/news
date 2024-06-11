@@ -24,7 +24,7 @@
                             <ul>
                                 <li><a href="index.php?url=category_list.php">所有分类</a></li>
                                 <li><a href="index.php?url=news_list.php&page_size=10">所有新闻排列</a></li>
-                                <li><a href="http://localhost:3000/index.php?url=news_add.php">新闻发布</a></li>
+                                <li><a href="index.php?url=news_detail.php&news_id=87">统战部</a></li>
                                 <li><a href="https://jwc.scu.edu.cn/">访问四川大学教务处</a></li>
                             </ul>
                         </div>
