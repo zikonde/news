@@ -29,11 +29,11 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
           ?> 
 
           <form action="login_process.php" method="post"> 
-               用户名：<input type="text" name="name" size="11" value="<?php echo $name?>" autocomplete=1 />
+               用户名：<input type="text" name="name" size="15   " value="<?php echo $name?>" autocomplete=1 placeholder="请输入用户名或邮箱"/>
                &emsp;
-               密 码 ：<input type="password" name="password" size="11" value="<?php echo $password?>" />
+               密 码 ：<input type="password" name="password" size="15" value="<?php echo $password?>"  placeholder="请输入密码"/>
                &emsp; 
-               验证码：<input type="text" name="checknum" size="6"/>
+               验证码：<input type="text" name="checknum" size="6"  placeholder="验证码"/>
                <?php $checknum  =  "";
                     $checknum .= mt_rand(0,9);
                     $checknum .= mt_rand(0,9);
