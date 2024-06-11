@@ -48,28 +48,30 @@
             
             <hr width="100%" text-align='left'>
             
-            <p class="section-label">可选填信息</p>
-            <table>
-                <tr>
-                    <td><label>性别</label></td>
-                    <td>：</td>
-                    <td>
-                        <label for="male">男</label><input type="radio" id="male" name="sex" value="男">
-                        &emsp;
-                        <label for="female">女</label> <input type="radio" id="female" name="sex" value="女">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="DOB">出生日期</label></td>
-                    <td>：</td>
-                    <td>
-                        <?php
-                        @$max_dob = date('Y-m-d',strtotime("12 years ago"));
-                        echo @"<input type='date' id='DOB' name='DOB' max='$max_dob'>";
-                        ?>
+            <details>
+                <summary class="section-label">可选填信息</summary>
+                <table>
+                    <tr>
+                        <td><label>性别</label></td>
+                        <td>：</td>
+                        <td>
+                            <label for="male">男</label><input type="radio" id="male" name="sex" value="男">
+                            &emsp;
+                            <label for="female">女</label> <input type="radio" id="female" name="sex" value="女">
                         </td>
-                </tr>
-            </table>
+                    </tr>
+                    <tr>
+                        <td><label for="DOB">出生日期</label></td>
+                        <td>：</td>
+                        <td>
+                            <?php
+                            @$max_dob = date('Y-m-d',strtotime("12 years ago"));
+                            echo @"<input type='date' id='DOB' name='DOB' max='$max_dob'>";
+                            ?>
+                            </td>
+                    </tr>
+                </table>
+            </details>
 
             <br>
 

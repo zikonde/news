@@ -13,6 +13,7 @@ if($_SERVER["PHP_SELF"] === "/functions/database.php"){
         $database = "news"; 			//数据库名 
         $port = 3306;
         @$database_connection = NEW mysqli($hostname, $host_username, $host_password,$database,$port); 					//连接数据库服务器
+        // @$database_connection = NEW mysqli("sql300.infinityfree.com","if0_36616324","8BynwuNX88y5LDO","if0_36616324_news",3306); 					//连接数据库服务器
         if(mysqli_connect_error()){
             if(strtolower(@$database_connection->connect_error)==strtolower("Unknown database '$database'")){
                 //数据库不存在
