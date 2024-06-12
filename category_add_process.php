@@ -8,11 +8,12 @@ if($_SERVER["PHP_SELF"] === "/category_add_process.php"){
           include_once("functions/url_navigator.php");
 
 
-          if(!is_login()){ 
-               echo "请您登录后在访问该页面！"; 
+          if(!is_admin()){ 
+               include_once("error_pages/404.html"); 
                return; 
           }else{
                include_once("functions/database.php"); 
+               die;
                
                $new_category = $_POST["new_category"]; 
                if(empty($new_category)){
@@ -24,7 +25,7 @@ if($_SERVER["PHP_SELF"] === "/category_add_process.php"){
                     $sql = "insert into category values(null, '$new_category', '$new_description')"; 
 
                     get_connection(); 
-                    var_dump(mysqli_query($database_connection,$sql)); 
+                    mysqli_query($database_connection,$sql); 
                     close_connection(); 
 
                     header("Location:index.php"); 

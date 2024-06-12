@@ -48,12 +48,20 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                <input type="submit" value="µÇÂ¼" /> 
                &emsp; 
                <a href="#" onclick="toggleSignup()" class="signup-btn">×¢²á</a>
+               <br/>
+               
+               <?php echo "<a href='#' onclick='toggleForgotPwd()'>Íü¼ÇÃÜÂë</a>"; ?>
           </form>  
  <?php 
      }  
+     if(!is_login()){ ?>
+          <!-- Hidden Signup Div -->
+          <div id="signup" style="display: none;">
+               <?php include_once("signup.php"); ?>
+          </div>
+          <div id="forgot-pwd" style="display: none;">
+               <?php include_once("forgot_pwd.php"); ?>
+          </div>
+     <?php }
 } ?>
 
-    <!-- Hidden Signup Div -->
-    <div id="signup" style="display: none;">
-        <?php include_once("signup.php"); ?>
-    </div>

@@ -5,6 +5,7 @@ include_once("functions/page.php");
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
 include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php");
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +144,7 @@ include_once("functions/url_navigator.php");
                                         $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
                                         ?>
                                         <!-- //提供进行模糊查询的form表单  -->
-                                        <form action="news_list.php" method="get" name = 'f1' onsubmit="check()">
+                                        <form action="news_list.php" method="get" name = 'f1'>
                                             <input type="text" name="keyword" placeholder="请输入搜索关键字" value="<?php echo $keyword?>">
                                             <button><i class="fa fa-search"></i></button>
                                         </form> 
@@ -201,31 +202,66 @@ include_once("functions/url_navigator.php");
             }
         }
             
-        function updateThumbnail() {
-            var file = document.getElementById("thumbnail").files[0];
-            // var thumbnail = document.getElementById("thumbnail");
-            var reader = new FileReader();
-            reader.onloadend = function() {
-                document.getElementById("news_image").src = reader.result;
-                // thumbnail.style.backgroundImage = "url("+ reader.result+")";
+        <?php if(is_admin()){ ?>
+            function updateThumbnail() {
+                var file = document.getElementById("thumbnail").files[0];
+                // var thumbnail = document.getElementById("thumbnail");
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    document.getElementById("news_image").src = reader.result;
+                    // thumbnail.style.backgroundImage = "url("+ reader.result+")";
+                }
+                if(file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    document.getElementById("news_image").src = "images/thumbnail.jpg";
+                    // thumbnail.style.backgroundImage = "url(images/thumbnail.jpg)";
+                }
             }
-            if(file) {
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById("news_image").src = "images/thumbnail.jpg";
-                // thumbnail.style.backgroundImage = "url(images/thumbnail.jpg)";
-            }
-        }
 
-        function check(){
-            var keyword = document.f1.keyword.value;
-            if(keyword == ""){
-                alert("请输入关键字！");
-                return false;
+            function selectAll(category = '') {
+                var checkall = document.getElementById('news_item_selectall'+category);
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = true;
+                }
+                check(category);
             }
-            return true;
-        }
+            
+            function deselectAll(category = '') {
+                var checkall = document.getElementById('news_item_selectall'+category);
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                check(category);
+            }
+            
+            function invertSelection(category = '') {
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = !checkboxes[i].checked;
+                }
+                check(category);
+            }
 
+            function checkall(category = ''){
+                var checkall = document.getElementById('news_item_selectall'+category);
+                checkall.checked? selectAll(category):deselectAll(category);
+            }
+
+            function check(category = ''){
+                var checkboxes = document.getElementsByName('news_item'+category);
+                var checkall = document.getElementById('news_item_selectall'+category);
+                allchecked = 1;
+                for (var i = 0; i < checkboxes.length; i++) {
+                    allchecked = allchecked*checkboxes[i].checked;
+                }
+                this.checked = !this.checked;
+                allchecked? checkall.checked = true: checkall.checked = false;
+            }
+        <?php } ?>
+        
         $(document).ready(function() {
             $("a").click(function(event) {
 
@@ -249,10 +285,43 @@ include_once("functions/url_navigator.php");
                     }
                 });
             });
+            <?php if(is_admin()){ ?>
+                $("a[id^='delete_selected']").click(function(event) {
+                    var news_ids = [];
+                    category_id = this.name;
+                    var checkboxes = document.getElementsByName('news_item'+category_id);
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if(checkboxes[i].checked){
+                            news_ids.push(checkboxes[i].value);
+                        }
+                    }
+                    $.ajax({
+                        url: "news_delete_selected.php",
+                        type: "POST",
+                        data: { news_ids: news_ids }, // Send data as an object
+                        success: function(response) {
+                            alert("删除成功！");
+                            location.reload();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error sending data:", textStatus, errorThrown);
+                        }
+                    });
+                });
+            <?php } ?>
         });
 
         function toggleSignup() {
             var signupDiv = document.getElementById("signup");
+            if (signupDiv.style.display === "none") {
+                signupDiv.style.display = "block";
+            } else {
+                signupDiv.style.display = "none";
+            }
+        }
+
+        function toggleForgotPwd() {
+            var signupDiv = document.getElementById("forgot-pwd");
             if (signupDiv.style.display === "none") {
                 signupDiv.style.display = "block";
             } else {

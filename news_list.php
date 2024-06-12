@@ -37,15 +37,21 @@
                     //exit("暂无记录！"); 
                 }else{ ?>
                     <tr><h1 class="sn-title" style="text-align: center;">系统所有新闻如下：</h1></tr>
+                    <?php if(is_admin()){ ?><tr>
+                        <td colspan="3"><input type="checkbox" id="news_item_selectall" onclick="checkall()"> 全选</td>
+                        <td><a href="#" onclick="invertSelection()"><i class="fa-solid fa-arrow-right-arrow-left"></i> &nbsp; 反选</a></td>
+                        <td><a href="#" onclick="return confirm('确定删除吗？');" id="delete_selected"><i class="fa-regular fa-trash-can"></i>&nbsp; 删除选中的</a> </td>
+                    </tr> <?php }?>
                     <?php
                     while($row = mysqli_fetch_array($result_set)){ 
                         ?> 
                         <tr> 
+                            <?php if(is_admin()){?><td><input type="checkbox" value="<?=$row['news_id']?>" name="news_item" onclick="check()"></td> <?php } ?>
                             <td> 
                             <img src="<?php echo $row['thumbnail'];?>" width="150px"> 
                             </td>
                             <td> 
-                            <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
+                            <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id=<?php echo $row['news_id']?>"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
                             </td>
                             <?php 
                             if(is_admin()){ 
