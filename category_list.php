@@ -7,7 +7,7 @@ include_once("functions/page.php");
 
 //显示文件上传的状态信息 
 
-$sql = "SELECT category_id, name, description from category WHERE category_id LIKE '%$category_id%'";
+$sql = "SELECT category_id, name, description from category WHERE category_id LIKE '$category_id%'";
 
 //构造查询所有新闻的SQL语句
 get_connection();

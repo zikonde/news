@@ -1,9 +1,9 @@
 <script>
     function myalert1() {
-        alert("Î¢ÐÅºÅ£ºwxid_0684sfy1oohv12");
+        alert("Î¢ÐÅºÅ£ºzirenda");
     }
     function myalert2() {
-        alert("QQºÅ£º1533677006");
+        alert("QQºÅ£º2819960965");
     }
 </script>
 
