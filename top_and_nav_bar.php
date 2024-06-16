@@ -162,19 +162,21 @@ include_once("functions/get_url_parameters.php");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        var password = document.getElementById("password")
-        , confirm_password = document.getElementById("confirm_password");
+        <?php if(!is_login()){?>
+            var password = document.getElementById("password")
+            , confirm_password = document.getElementById("confirm_password");
 
-        function validatePassword(){
-        if(password.value !== confirm_password.value) {
-            confirm_password.setCustomValidity("√‹¬Î≤ª∆•≈‰");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-        }
+            function validatePassword(){
+                if(password.value !== confirm_password.value) {
+                    confirm_password.setCustomValidity("√‹¬Î≤ª∆•≈‰");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
 
-        password.onchange = validatePassword;
-        confirm_password.onkeyup = validatePassword;
+        <?php } ?>
         
         var page_size = document.getElementsByName("page_size")[0];
         if(page_size){
