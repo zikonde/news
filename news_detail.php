@@ -125,9 +125,11 @@
 
         
                                         <div class="sn-content">
-                                            <h1 class="sn-title"><?php echo $title;?></h1>
+                                            <div style="text-align: center;">
+                                                <h1 class="sn-title"><?php echo $title;?></h1>
+                                            </div>
         
-                                            <?php echo $content;?>
+                                            <p><?php echo $content;?></p>
         
                                             <br />
                                             <?php if($attatchment){ ?> 

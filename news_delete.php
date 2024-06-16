@@ -9,6 +9,7 @@ if(!is_admin()){
 }else{
      include_once("functions/delete.php"); 
 
+     var_dump($news_id);
      delete_news($news_id); 
 
      $message = "新闻及相关评论信息删除成功！"; 

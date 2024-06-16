@@ -3,7 +3,7 @@
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <h3 class="title">联系我们</h3>
                             <div class="contact-info">
@@ -16,34 +16,21 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">有用的链接</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6">
+
+                    <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <h3 class="title">快速链接</h3>
                             <ul>
-                                <li><a href="index.php?url=category_list.php">所有分类 (All Categories)</a></li>
+                                <li><a href="index.php?url=category_list.php">所有分类</a></li>
                                 <li><a href="index.php?url=news_list.php&page_size=10">所有新闻排列</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
+                                <li><a href="index.php?url=news_detail.php&news_id=87">统战部</a></li>
+                                <li><a href="https://jwc.scu.edu.cn/">访问四川大学教务处</a></li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <h3 class="title">新闻通讯</h3>
                             <div class="newsletter">
@@ -68,10 +55,9 @@
                 <div class="f-menu">
 				    <a href="index.php?url=system_introduction.php">系统简介</a> 
 				    <a href="contact.php">联系方法</a> 
-                    <a href="">使用条款</a>
-                    <a href="">隐私政策</a>
-                    <a href="">Cookie政策</a>
-                    <a href="">可访问性帮助</a>
+                    <a href="user_policy.php">使用条款</a>
+                    <a href="privacy_policy.php">隐私政策</a>
+                    <a href="system_cookie_policy.php">Cookie政策</a>
 				    <a href="https://www.12377.cn/bmgz/2022/8db0296a_web.html">举报违法信息</a> 
                 </div>
             </div>

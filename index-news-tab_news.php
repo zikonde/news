@@ -22,7 +22,7 @@
                         include_once("functions/get_news.php"); 
                         include_once("functions/get_url_parameters.php");
 
-                        $result_set = get_latest(0, 3, 1);
+                        $result_set = get_latest(0, 3, 2);
                         ?>
                             <?php 
                             if(!$result_set){?>

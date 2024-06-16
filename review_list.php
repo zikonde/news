@@ -14,7 +14,7 @@
                session_start(); 
           } 
           if(!is_admin()){ 
-               echo "请您登录系统后，再访问该页面！"; 
+               include_once("error_pages/404.html"); 
                return; 
           }else{
           include_once("functions/database.php"); 

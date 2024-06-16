@@ -6,9 +6,6 @@ include_once("functions/get_url_parameters.php");
 include_once("functions/page.php"); 
 
 //显示文件上传的状态信息 
-if($message){ 
-    echo "$message<br/>";
-} 
 
 $sql = "SELECT category_id, name, description from category WHERE category_id LIKE '%$category_id%'";
 
@@ -52,7 +49,7 @@ close_connection();
     <div id="mainfunction"> 
         <?php 
         if(!$result_categories->num_rows){ 
-            echo "暂时没无内容！"; 
+            include_once("error_pages/404.html"); 
             return; 
         }else{?>
             <table class="nl-table"> 
@@ -65,8 +62,8 @@ close_connection();
                     $cat_title = $cat["description"];
                     ?>
                     <tr class="sw-title">
-                        <td colspan='4'><h2 title="<?=$cat_title ?>"><a href="index.php?url=category_list.php&category_id=<?=$cat_id?>&page_size=10"><?=$cat_name?>栏目</a></h2></td>
-                        <td><a href="index.php?url=category_delete.php&category_id =<?=$cat_id?>"  onclick='return confirm("该操作也会删除分类里面的所有新闻，确定删除该分类？")'><i class="fa-regular fa-trash-can"></i></a></td>
+                        <td colspan='5'><h2 title="<?=$cat_title ?>"><a href="index.php?url=category_list.php&category_id=<?=$cat_id?>&page_size=10"><?=$cat_name?>栏目</a></h2></td>
+                        <?php if(is_admin()){?><td><a href="index.php?url=category_delete.php&category_id=<?=$cat_id?>"  onclick='return confirm("该操作也会删除分类里面的所有新闻，确定删除该分类？")'><i class="fa-regular fa-trash-can" title="删除该i分类"></i></a></td> <?php } ?> 
                     </tr>
 
                     <?php 
@@ -79,15 +76,23 @@ close_connection();
                     
                         <?php //return;
                     }else{
+                        if(is_admin()){ ?>
+                            <tr>
+                                <td colspan="3"><input type="checkbox" id="news_item_selectall<?=$cat_id?>" onclick="checkall('<?=$cat_id?>')"> 全选</td>
+                                <td><a href="#" onclick="invertSelection(<?=$cat_id?>)"><i class="fa-solid fa-arrow-right-arrow-left" title="反选"></i></a></td>
+                                <td><a href="#" onclick="return confirm('确定删除吗？');" id="delete_selected" name="<?=$cat_id?>"><i class="fa-solid fa-trash-can" title="删除选中的"></i></a> </td>
+                            </tr> 
+                        <?php }
                         while($row = mysqli_fetch_array($result_search_by_category_set[$i])){ 
                             ?>      
                             
                             <tr> 
+                                <?php if(is_admin()){?><td><input type="checkbox" value="<?=$row['news_id']?>" name="news_item<?=$cat_id?>" onclick="check(<?=$cat_id?>)"></td> <?php } ?>
                                 <td> 
                                     <img src="<?php echo $row['thumbnail'];?>" width="150px"> 
                                 </td>
                                 <td> 
-                                    <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"> <?php echo mb_strcut($row['title'],0,40,"gbk")?></a> 
+                                    <a href="index.php?url=news_detail.php&keyword=<?php echo $keyword?>&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"> <?php echo mb_strcut($row['title'],0,80,"gbk")?></a> 
                                 </td>
                                 <?php 
                                 if(is_admin()){ 

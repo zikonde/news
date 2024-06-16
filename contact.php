@@ -63,7 +63,7 @@
                                 <h4><i class="fa-solid fa-user"></i> 制作人 2： 邓琬琼</h4>
                                 <h4><i class="fa fa-map-marker"></i> 手机号：19381923882</h4>
                                 <h4><i class="fa-brands fa-weixin"></i> 微信号：wxid_0684sfy1oohv12</h4>
-                                <h4><i class="fa-brands fa-qq"></i> QQ号：2819960965</h4>
+                                <h4><i class="fa-brands fa-qq"></i> QQ号：1533677006</h4>
 
                                 <br>
 

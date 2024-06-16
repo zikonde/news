@@ -1,6 +1,7 @@
 <?php 
 if($_SERVER["PHP_SELF"] === "/functions/page.php"){
   header("location:../index.php");
+  return;
 }
 
 function page($total_records,$page_size,$page_current,$url,$keyword){ 
@@ -42,10 +43,10 @@ function page($total_records,$page_size,$page_current,$url,$keyword){
         <tr>
             <td>
                 <select name="page_size" id='page_size' style="text-align: center;" onchange = "pager()">
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
+                    <option value="3" <?=($page_size==3?"selected":"")?> >3</option>
+                    <option value="5" <?=($page_size==5?"selected":"")?> >5</option>
+                    <option value="10" <?=($page_size==10?"selected":"")?> >10</option>
+                    <option value="20" <?=($page_size==20?"selected":"")?> >20</option>
                 </select>
             </td>
             <td>
@@ -63,3 +64,7 @@ function page($total_records,$page_size,$page_current,$url,$keyword){
 
 //page(300,3,1,$_SERVER["REQUEST_URI"],''); 
 ?>
+
+<script>
+    
+</script>

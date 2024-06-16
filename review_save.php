@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $currentDate = date("Y-m-d H:i:s"); 
             $ip = $_SERVER["REMOTE_ADDR"]; 
             $state = "Œ¥…Û∫À"; 
-            $user_id = $_SESSION["user_id"];
+            $user_id = isset($_SESSION["user_id"])?$_SESSION["user_id"]:null;
     
             $sql = "insert into review values(null,$news_id,'$user_id','$content','$currentDate','$state','$ip')"; 
     

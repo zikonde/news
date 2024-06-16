@@ -4,6 +4,8 @@ include_once("functions/database.php");
 include_once("functions/page.php"); 
 include_once("functions/is_login.php"); 
 include_once("functions/session_config.php"); 
+include_once("functions/url_navigator.php");
+include_once("functions/get_url_parameters.php");
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +33,7 @@ include_once("functions/session_config.php");
     <link href="lib/css/style.css" rel="stylesheet">
 </head>
 <body onload="showMessage()">
+    
     <!-- Top Bar Start -->
     <!-- 
     <div class="top-bar">
@@ -62,7 +65,7 @@ include_once("functions/session_config.php");
             <div class="row align-items-center">
                 <div class="col-lg-3 col-md-4">
                     <div class="b-logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="img/logo.png" alt="Logo">
                         </a>
                     </div>
@@ -141,7 +144,7 @@ include_once("functions/session_config.php");
                                         $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
                                         ?>
                                         <!-- //提供进行模糊查询的form表单  -->
-                                        <form action="news_list.php" method="get" name = 'f1' onsubmit="check()">
+                                        <form action="news_list.php" method="get" name = 'f1'>
                                             <input type="text" name="keyword" placeholder="请输入搜索关键字" value="<?php echo $keyword?>">
                                             <button><i class="fa fa-search"></i></button>
                                         </form> 
@@ -159,13 +162,27 @@ include_once("functions/session_config.php");
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("密码不匹配");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+        
         var page_size = document.getElementsByName("page_size")[0];
         if(page_size){
             page_size.value= <?= (isset($_GET["page_size"])?$_GET["page_size"]:3);?>;
         }
 
         function showMessage() {
-            var message = '<?=isset($_GET["message"])? $_GET["message"]: null; ?>';
+            var message = '<?=$message; ?>';
             if(message != '') {
                 alert(message);
                 const url = window.location;
@@ -185,63 +202,132 @@ include_once("functions/session_config.php");
             }
         }
             
-        function updateThumbnail() {
-            var file = document.getElementById("thumbnail").files[0];
-            // var thumbnail = document.getElementById("thumbnail");
-            var reader = new FileReader();
-            reader.onloadend = function() {
-                document.getElementById("news_image").src = reader.result;
-                // thumbnail.style.backgroundImage = "url("+ reader.result+")";
-            }
-            if(file) {
-                reader.readAsDataURL(file);
-            } else {
-                document.getElementById("news_image").src = "images/thumbnail.jpg";
-                // thumbnail.style.backgroundImage = "url(images/thumbnail.jpg)";
-            }
-        }
-
-        function check(){
-            var keyword = document.f1.keyword.value;
-            if(keyword == ""){
-                alert("请输入关键字！");
-                return false;
-            }
-            return true;
-        }
-        
-        function updateClicked(hreflink){
-            var news_id = new URLSearchParams(hreflink).get('news_id');
-            
-            document.location.href = '<?php echo "updateClicked.php?news_id="; ?>'+news_id;
-        }
-
-        $(document).ready(function() {
-        $("a").click(function(event) {
-            event.preventDefault(); // Prevent default link behavior
-
-            const url = new URL(this.href); // Use `this` to reference the clicked link
-            const newsId = url.searchParams.get("news_id");
-
-            $.ajax({
-            url: "updateClicked.php",
-            type: "POST",
-            data: { news_id: url }, // Send data as an object
-            dataType: "json", // Optional: Expect JSON response from server (if applicable)
-            success: function(response) {
-                if (typeof response === "object") {
-                // Handle successful JSON response from updateclicked.php (optional)
-                console.log("Data sent successfully! Response:", response);
-                } else {
-                console.log("Data sent successfully! (non-JSON response)");
+        <?php if(is_admin()){ ?>
+            function updateThumbnail() {
+                var file = document.getElementById("thumbnail").files[0];
+                // var thumbnail = document.getElementById("thumbnail");
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    document.getElementById("news_image").src = reader.result;
+                    // thumbnail.style.backgroundImage = "url("+ reader.result+")";
                 }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error("Error sending data:", textStatus, errorThrown);
+                if(file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    document.getElementById("news_image").src = "images/thumbnail.jpg";
+                    // thumbnail.style.backgroundImage = "url(images/thumbnail.jpg)";
+                }
             }
+
+            function selectAll(category = '') {
+                var checkall = document.getElementById('news_item_selectall'+category);
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = true;
+                }
+                check(category);
+            }
+            
+            function deselectAll(category = '') {
+                var checkall = document.getElementById('news_item_selectall'+category);
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                check(category);
+            }
+            
+            function invertSelection(category = '') {
+                var checkboxes = document.getElementsByName('news_item'+category);
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = !checkboxes[i].checked;
+                }
+                check(category);
+            }
+
+            function checkall(category = ''){
+                var checkall = document.getElementById('news_item_selectall'+category);
+                checkall.checked? selectAll(category):deselectAll(category);
+            }
+
+            function check(category = ''){
+                var checkboxes = document.getElementsByName('news_item'+category);
+                var checkall = document.getElementById('news_item_selectall'+category);
+                allchecked = 1;
+                for (var i = 0; i < checkboxes.length; i++) {
+                    allchecked = allchecked*checkboxes[i].checked;
+                }
+                this.checked = !this.checked;
+                allchecked? checkall.checked = true: checkall.checked = false;
+            }
+        <?php } ?>
+        
+        $(document).ready(function() {
+            $("a").click(function(event) {
+
+                const url = new URL(this.href); // Use `this` to reference the clicked link
+                const newsId = url.searchParams.get("news_id");
+
+                $.ajax({
+                    url: "updateClicked.php",
+                    type: "POST",
+                    data: { news_id: newsId }, // Send data as an object
+                    success: function(response) {
+                        if (typeof response === "object") {
+                            // Handle successful JSON response from updateclicked.php (optional)
+                            console.log("Data sent successfully! Response:", response);
+                        } else {
+                            console.log("Data sent successfully! (non-JSON response)");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error sending data:", textStatus, errorThrown);
+                    }
+                });
             });
+            <?php if(is_admin()){ ?>
+                $("a[id^='delete_selected']").click(function(event) {
+                    var news_ids = [];
+                    category_id = this.name;
+                    var checkboxes = document.getElementsByName('news_item'+category_id);
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if(checkboxes[i].checked){
+                            news_ids.push(checkboxes[i].value);
+                        }
+                    }
+                    $.ajax({
+                        url: "news_delete_selected.php",
+                        type: "POST",
+                        data: { news_ids: news_ids }, // Send data as an object
+                        success: function(response) {
+                            alert("删除成功！");
+                            location.reload();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error sending data:", textStatus, errorThrown);
+                        }
+                    });
+                });
+            <?php } ?>
         });
-        });
+
+        function toggleSignup() {
+            var signupDiv = document.getElementById("signup");
+            if (signupDiv.style.display === "none") {
+                signupDiv.style.display = "block";
+            } else {
+                signupDiv.style.display = "none";
+            }
+        }
+
+        function toggleForgotPwd() {
+            var signupDiv = document.getElementById("forgot-pwd");
+            if (signupDiv.style.display === "none") {
+                signupDiv.style.display = "block";
+            } else {
+                signupDiv.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>

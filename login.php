@@ -29,11 +29,11 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
           ?> 
 
           <form action="login_process.php" method="post"> 
-               用户名：<input type="text" name="name" size="11" value="<?php echo $name?>" autocomplete=1 />
+               用户名：<input type="text" name="name" size="15   " value="<?php echo $name?>" autocomplete=1 placeholder="请输入用户名或邮箱"/>
                &emsp;
-               密 码 ：<input type="password" name="password" size="11" value="<?php echo $password?>" />
+               密 码 ：<input type="password" name="password" size="15" value="<?php echo $password?>"  placeholder="请输入密码"/>
                &emsp; 
-               验证码：<input type="text" name="checknum" size="6"/>
+               验证码：<input type="text" name="checknum" size="6"  placeholder="验证码"/>
                <?php $checknum  =  "";
                     $checknum .= mt_rand(0,9);
                     $checknum .= mt_rand(0,9);
@@ -47,8 +47,21 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
                &emsp; 
                <input type="submit" value="登录" /> 
                &emsp; 
-               <a href="#"> 注册</a> 
+               <a href="#" onclick="toggleSignup()" class="signup-btn">注册</a>
+               <br/>
+               
+               <?php echo "<a href='#' onclick='toggleForgotPwd()'>忘记密码</a>"; ?>
           </form>  
  <?php 
      }  
+     if(!is_login()){ ?>
+          <!-- Hidden Signup Div -->
+          <div id="signup" style="display: none;">
+               <?php include_once("signup.php"); ?>
+          </div>
+          <div id="forgot-pwd" style="display: none;">
+               <?php include_once("forgot_pwd.php"); ?>
+          </div>
+     <?php }
 } ?>
+

@@ -101,7 +101,7 @@
                 <br />
                 
                 <div>
-                    附件：	<input type="file" name="attachment" size="50"> &emsp14;
+                    附件：	<input type="file" name="attachment" size="100"> &emsp14;
                     <span> <?php if($attachment){ echo"现在附件：<a href='download.php?attachment=$attachment'>".$attachment."</a>";}?></span>
                 </div>
                 <input type="hidden" name="MAX_FILE_SIZE" value="10485760">

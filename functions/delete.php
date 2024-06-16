@@ -20,6 +20,8 @@ function delete_news($news_id = 0, $category_id = 0){
         while($row = $result_set->fetch_array()){
             delete_review(0, $row["news_id"]);
         }
+    }else{
+        delete_review(0, $news_id);
     }
     
     get_connection()->query("DELETE FROM news WHERE news_id=$news_id OR category_id=$category_id"); 

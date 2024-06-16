@@ -2,15 +2,19 @@
 include_once("functions/database.php"); 
 include_once("functions/url_navigator.php");
 include_once("functions/get_url_parameters.php"); 
-var_dump($_GET);    
-if($news_id!==0){
-     //构造3条SQL语句 
-     $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id"; 
-     
-     get_connection(); 
-     $database_connection -> query($sql_news_update); 
-     close_connection(); 
-}
-// header("Location:".add_to_url([], "index.php"));
 
-return; 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+     if($news_id!==0){
+          //构造3条SQL语句 
+          $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id"; 
+          
+          $database_connectio = get_connection(); 
+          $database_connection -> query($sql_news_update); 
+          close_connection(); 
+     }
+     // header("Location:".add_to_url([], "index.php"));
+
+     return; 
+}else{
+     header("Location:".add_to_url([], "index.php"));
+}
