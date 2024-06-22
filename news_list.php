@@ -19,7 +19,7 @@
         $keyword_search = addslashes($keyword);
         
         $total_records =get_news_count($keyword_search);
-        $result_set = get_matching($keyword_search, $page_size, $page_current);  
+        $result_set = get_matching($keyword_search, $page_size, $page_current,"%");  
             
         //提供进行模糊查询的form表单 
         ?> 

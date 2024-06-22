@@ -36,7 +36,7 @@ function get_matching($keyword = "", $page_size = 5, $page_current = 1, $categor
 
     //构造模糊查询新闻的SQL语句 
     $search_sql = "SELECT * 
-    FROM news WHERE (title LIKE '%$keyword_search%' OR content LIKE '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')) AND category_id LIKE '%$category_id%' ORDER BY news_id DESC LIMIT $start, $page_size";
+    FROM news WHERE (title LIKE '%$keyword_search%' OR content LIKE '%$keyword_search%' OR user_id IN (SELECT user_id FROM users WHERE name LIKE '%$keyword_search%')) AND category_id LIKE '$category_id' ORDER BY news_id DESC LIMIT $start, $page_size";
 
     $database_connection = get_connection(); 
     $result_set = $database_connection->query($search_sql); 

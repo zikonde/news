@@ -13,7 +13,6 @@ if($_SERVER["PHP_SELF"] === "/category_add_process.php"){
                return; 
           }else{
                include_once("functions/database.php"); 
-               die;
                
                $new_category = $_POST["new_category"]; 
                if(empty($new_category)){
