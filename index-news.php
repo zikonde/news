@@ -9,13 +9,15 @@
 
     <?php include_once "top_and_nav_bar.php" ?>
 
+
+
             
     <div id="mainfunction"> 
         
         <!-- 热门新闻开始 -->
         <?php include 'index-news-top_news.php'; ?>
         <!-- 热门新闻结束 -->
-
+        
         <!-- 分类新闻开始 -->
         <?php include 'index-news-cat_news.php'; ?>
         <!-- 分类新闻结束 -->

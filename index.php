@@ -7,7 +7,7 @@
 
     <body onload="showMessage()">
         
-        <?php include_once "top_and_nav_bar.php" ?>
+            <?php include_once "top_and_nav_bar.php";?>
 
         <div id="mainbody"> 
             <?php 
