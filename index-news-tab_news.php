@@ -22,10 +22,12 @@
                         include_once("functions/get_news.php"); 
                         include_once("functions/get_url_parameters.php");
 
-                        $result_set = get_latest(0, 3, 2);
+                        $result_set = get_tab_content_news(0, 3, 2);
+                        $tab1 = $result_set[0];
+                        $tab2 = $result_set[1];
                         ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab1){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -33,7 +35,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab1) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
@@ -47,13 +51,8 @@
                         ?>
                     </div>
                     <div id="popular" class="container tab-pane fade">
-                        <?php 
-                        include_once("functions/get_news.php"); 
-
-                        $result_set = get_popular(0, 3, 2);
-                        ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab1){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -61,7 +60,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab1) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
@@ -75,13 +76,8 @@
                         ?>
                     </div>
                     <div id="latest" class="container tab-pane fade">
-                        <?php 
-                        include_once("functions/get_news.php"); 
-                        
-                        $result_set = get_latest(0, 3, 1);
-                        ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab1){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -89,7 +85,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab1) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
@@ -120,13 +118,8 @@
 
                 <div class="tab-content">
                     <div id="m-viewed" class="container tab-pane active">
-                        <?php 
-                        include_once("functions/get_news.php"); 
-
-                        $result_set = get_most_viewed(0, 3, 1);
-                        ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab2){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -134,7 +127,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab2) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
@@ -148,13 +143,8 @@
                         ?>
                     </div>
                     <div id="m-read" class="container tab-pane fade">
-                        <?php 
-                        include_once("functions/get_news.php"); 
-
-                        $result_set = get_most_viewed(0, 3, 2);
-                        ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab2){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -162,7 +152,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab2) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
@@ -176,13 +168,8 @@
                         ?>
                     </div>
                     <div id="m-recent" class="container tab-pane fade">
-                        <?php 
-                        include_once("functions/get_news.php"); 
-
-                        $result_set = get_latest(0, 3, 2);
-                        ?>
                             <?php 
-                            if(!$result_set){?>
+                            if(!$tab2){?>
                                 <div class="tn-news">
                                     <div class="tn-title">
                                         <p>暂无新闻！</p>
@@ -190,7 +177,9 @@
                                 </div>
                                 <?php 
                             }else{
-                                while($row = mysqli_fetch_array($result_set)){ ?>
+                                $n = 0;
+                                while($n++<3){
+                                    $row = mysqli_fetch_array($tab2) ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />

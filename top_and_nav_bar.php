@@ -3,9 +3,9 @@
 include_once("functions/database.php"); 
 include_once("functions/page.php"); 
 include_once("functions/is_login.php"); 
-include_once("functions/session_config.php"); 
-include_once("functions/url_navigator.php");
-include_once("functions/get_url_parameters.php");
+// include_once("functions/session_config.php"); 
+// include_once("functions/url_navigator.php");
+// include_once("functions/get_url_parameters.php");
 ?>
 
 <!DOCTYPE html>
@@ -34,31 +34,6 @@ include_once("functions/get_url_parameters.php");
 </head>
 <body onload="showMessage()">
     
-    <!-- Top Bar Start -->
-    <!-- 
-    <div class="top-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="tb-contact">
-                        <p><i class="fas fa-envelope"></i>info@mail.com</p>
-                        <p><i class="fas fa-phone-alt"></i>+012 345 6789</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="tb-menu">
-                        <a href="">About</a>
-                        <a href="">Privacy</a>
-                        <a href="">Terms</a>
-                        <a href="">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-    -->
-    <!-- Top Bar End -->
-    
     <!-- Brand Start -->
     <div class="brand">
         <div class="container">
@@ -73,16 +48,9 @@ include_once("functions/get_url_parameters.php");
                 <div class="col-lg-9 col-md-4" style="text-align: center;">
                     <?php 
                     include_once("login.php"); 
+                    include_once("functions/get_url_parameters.php"); 
                     ?> 
                 </div>
-                <!-- 
-                <div class="col-lg-3 col-md-4">
-                    <div class="b-search">
-                        <input type="text" placeholder="Search">
-                        <button><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-                -->
             </div>
         </div>
     </div>
@@ -99,9 +67,6 @@ include_once("functions/get_url_parameters.php");
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <?php 
-                            $url = (isset($_GET["url"])?$_GET["url"]:basename($_SERVER["SCRIPT_FILENAME"]));
-                        ?>
                         <a href="index.php" class="nav-item nav-link <?php if ($url == "index.php" or $url == "news.php")echo "active"?>">首页</a>
 
                         <?php if(is_admin()){ ?><a href="index.php?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a> <?php } ?>
@@ -140,9 +105,6 @@ include_once("functions/get_url_parameters.php");
                             <div class="row align-items-center">
                                 <div class="col-lg-12 col-md-4">
                                     <div class="b-search">
-                                        <?php
-                                        $keyword = (isset($_GET["keyword"])?(trim($_GET["keyword"])):""); 
-                                        ?>
                                         <!-- //提供进行模糊查询的form表单  -->
                                         <form action="news_list.php" method="get" name = 'f1'>
                                             <input type="text" name="keyword" placeholder="请输入搜索关键字" value="<?php echo $keyword?>">

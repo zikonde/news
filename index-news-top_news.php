@@ -8,10 +8,12 @@
                 <div class="row tn-slider">
 
                     <?php 
-                    $popular = get_xi(1, 1);
+                    $result = get_top_news();
+                    $left = $result[0];
+                    $right = $result[1];
 
-                    if (mysqli_num_rows($popular) > 0) { 
-                        $row = mysqli_fetch_assoc($popular);
+                    if (mysqli_num_rows($left) > 0) { 
+                        while($row = mysqli_fetch_assoc($left)) {
                         $newsId = $row["news_id"];
                         $title = $row["title"];
                         $thumbnail = $row["thumbnail"];?>
@@ -24,56 +26,18 @@
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                        <?php }
+                    } ?>
 
-                    <?php 
-                    $popular = get_popular(0, 1, 1);
-
-                    if (mysqli_num_rows($popular) > 0) { 
-                        $row = mysqli_fetch_assoc($popular);
-                        $newsId = $row["news_id"];
-                        $title = $row["title"];
-                        $thumbnail = $row["thumbnail"];?>
-
-                        <div class="col-md-6">
-                            <div class="tn-img">
-                                <img src="<?= $thumbnail ?>" />
-                                <div class="tn-title">
-                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-
-                    <?php 
-                    $latest_news = get_latest(0, 1, 1);
-
-                    if (mysqli_num_rows($latest_news) > 0) { 
-                        $row = mysqli_fetch_assoc($latest_news);
-                        $newsId = $row["news_id"];
-                        $title = $row["title"];
-                        $thumbnail = $row["thumbnail"];?>
-
-                        <div class="col-md-6">
-                            <div class="tn-img">
-                                <img src="<?= $thumbnail ?>" />
-                                <div class="tn-title">
-                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    
                 </div>
             </div>
 
             <div class="col-md-6 tn-right">
                 <div class="row">
 
-                    <?php $latest_news = get_latest(0, 4, 3);
-
-                    if (mysqli_num_rows($latest_news) > 0) { 
-                        while($row = mysqli_fetch_assoc($latest_news)) {
+                    <?php
+                    if (mysqli_num_rows($right) > 0) { 
+                        while($row = mysqli_fetch_assoc($right)) {
                             $newsId = $row["news_id"];
                             $title = $row["title"];
                             $thumbnail = $row["thumbnail"];?>

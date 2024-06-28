@@ -19,15 +19,12 @@
             if($news_id==0){ 
                 echo "该新闻不存在或已被删除！"; 
             }else{
-                //构造3条SQL语句 
-                // $sql_news_update = "update news set clicked=clicked+1 where news_id=$news_id";
+                //构造2条SQL语句 
                 $sql_news_detail = "select * from news where news_id=$news_id"; 
                 $sql_review_query = "select * from review where news_id=$news_id and state='已审核'"; 
 
-                //执行3条SQL语句 
+                //执行2条SQL语句 
                 get_connection(); 
-                
-                // $database_connection->query($sql_news_update); 
                 $result_news = $database_connection->query($sql_news_detail); 
                 $result_review = $database_connection->query($sql_review_query); 
 
@@ -37,7 +34,7 @@
                 //取出结果集中该新闻"已审核"的评论条数 
                 $count_review = ($result_review instanceof mysqli_result? $result_review->num_rows:0);
                 if($count_news == 0){
-                echo "该新闻不存在或已被删除！"; }
+                    include_once("error_pages/404.html"); }
                 else{
                     //根据新闻信息中的user_id查询对应的用户信息 
                     $news =$result_news->fetch_array(); 
@@ -205,11 +202,7 @@
                                                 </ul>
         
                                                 <div class="tab-content">
-                                                    <?php include("sn-tab_news-featured.php"); ?>
-
-                                                    <?php include("sn-tab_news-popular.php"); ?>
-
-                                                    <?php include("sn-tab_news-latest.php"); ?>
+                                                    <?php include("sn-tab_news.php"); ?>
                                                 </div>
                                             </div>
                                         </div>
