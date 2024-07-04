@@ -1,4 +1,8 @@
-
+<?php
+$result_set = get_tab_content_news($database_connection, 0, 3, 2);
+$tab1 = $result_set[0];
+$tab2 = $result_set[1];
+?>
 <div class="tab-news">
     <div class="container">
         <div class="row">
@@ -19,14 +23,6 @@
 
                     <div id="featured" class="container tab-pane active">
                         <?php 
-                        include_once("functions/get_news.php"); 
-                        include_once("functions/get_url_parameters.php");
-
-                        $result_set = get_tab_content_news(0, 3, 2);
-                        $tab1 = $result_set[0];
-                        $tab2 = $result_set[1];
-                        ?>
-                            <?php 
                             if(!$tab1){?>
                                 <div class="tn-news">
                                     <div class="tn-title">

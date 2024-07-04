@@ -27,7 +27,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="contact-form">
-                                <form>
+                                <form action="contact.php">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <input type="text" class="form-control" placeholder="您的姓名" />
@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <textarea class="form-control" rows="5" placeholder="留言"></textarea>
                                     </div>
-                                    <div><button class="btn" type="submit">发送消息</button></div>
+                                    <div><input type="submit" class="btn" value="发送消息"></div>
                                 </form>
                             </div>
                         </div>

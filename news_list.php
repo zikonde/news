@@ -18,8 +18,10 @@
         //若进行模糊查询，取得模糊查询的关键字keyword 
         $keyword_search = addslashes($keyword);
         
-        $total_records =get_news_count($keyword_search);
-        $result_set = get_matching($keyword_search, $page_size, $page_current,"%");  
+        $database_connection = get_connection();
+        $total_records =get_news_count($database_connection, $keyword_search);
+        $result_set = get_matching($database_connection, $keyword_search, $page_size, $page_current,"%");  
+        close_connection($database_connection);
             
         //提供进行模糊查询的form表单 
         ?> 

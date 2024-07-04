@@ -1,5 +1,7 @@
-<?php include_once("functions/get_news.php"); 
-
+<?php 
+$result_set = get_main_news($database_connection, 0, 9, 1); 
+$main = $result_set[0];
+$more = $result_set[1];
 ?>
 <div class="main-news">
     <div class="container">
@@ -8,10 +10,6 @@
             <div class="col-lg-9">
                 <div class="row">
                     <?php 
-                    $result_set = get_main_news(0, 9, 1); 
-                    $main = $result_set[0];
-                    $more = $result_set[1];
-
                     if($main){
                         $n = 0;
                         while($n++ < 9){ 
