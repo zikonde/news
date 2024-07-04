@@ -1,17 +1,9 @@
 <?php 
-include_once("functions/get_url_parameters.php");
-include_once("functions/get_news.php");
-
-//构造查询所有新闻的SQL语句
-$result = get_category_news();
+$result = get_category_news($database_connection);
 $result_categories = $result[0];
 $total_records_by_category = $result[1];
 $result_search_by_category_set = $result[2];
-    
-//提供进行模糊查询的form表单 
-?> 
 
-<?php 
 //分页的实现 
 for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
     <!-- Category News Start-->

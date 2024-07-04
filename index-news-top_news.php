@@ -1,4 +1,8 @@
-<?php include_once("functions/get_news.php"); ?>
+<?php 
+$result = get_top_news($database_connection);
+$left = $result[0];
+$right = $result[1];
+?>
 
 <div class="top-news">
     <div class="container">
@@ -8,10 +12,6 @@
                 <div class="row tn-slider">
 
                     <?php 
-                    $result = get_top_news();
-                    $left = $result[0];
-                    $right = $result[1];
-
                     if (mysqli_num_rows($left) > 0) { 
                         while($row = mysqli_fetch_assoc($left)) {
                         $newsId = $row["news_id"];

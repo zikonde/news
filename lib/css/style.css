@@ -157,7 +157,7 @@ h6 {
     background: #FF6F61;
 }
 
-button.btn, input[type="submit"] {
+button.btn, input[type="submit"], input[type="button"] {
     color: #ffffff;
     background: #000000;
     border: 1px solid #000000;
@@ -165,13 +165,13 @@ button.btn, input[type="submit"] {
     padding: 10px 15px;
 }
 
-button.btn:hover, input[type="submit"]:hover {
+button.btn:hover, input[type="submit"]:hover, input[type="button"]:hover {
     color: #ffffff;
     background: #FF6F61;
     border-color: #FF6F61;
 }
 
-input[type="filend"] ,#thumbnail{
+input[type="file"] ,#thumbnail{
     text-align: center;
     color: #ffffff;
     background: #FF6F61;

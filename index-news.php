@@ -7,12 +7,17 @@
 <body>
         
 
-    <?php include_once "top_and_nav_bar.php" ?>
+    <?php include_once "top_and_nav_bar.php"; ?>
 
 
-
-            
     <div id="mainfunction"> 
+        <?php 
+        include_once("functions/get_url_parameters.php");
+        include_once("functions/get_news.php");
+        include_once("functions/database.php");
+        
+        $database_connection = get_connection();
+        ?>
         
         <!-- 热门新闻开始 -->
         <?php include 'index-news-top_news.php'; ?>
