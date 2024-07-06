@@ -1,3 +1,13 @@
 RewriteOptions inherit
-ErrorDocument 404 404.html
 RewriteEngine On
+
+DirectoryIndex disabled
+Options -Indexes
+DirectoryIndex index.php
+
+ErrorDocument 400 /error_pages/404.php
+ErrorDocument 403 /error_pages/404.php
+ErrorDocument 404 /error_pages/404.php
+ErrorDocument 405 /error_pages/404.php
+
+php_value default_charset gbk

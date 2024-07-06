@@ -157,7 +157,7 @@ h6 {
     background: #FF6F61;
 }
 
-button.btn, input[type="submit"] {
+button.btn, input[type="submit"], input[type="button"] {
     color: #ffffff;
     background: #000000;
     border: 1px solid #000000;
@@ -165,13 +165,13 @@ button.btn, input[type="submit"] {
     padding: 10px 15px;
 }
 
-button.btn:hover, input[type="submit"]:hover {
+button.btn:hover, input[type="submit"]:hover, input[type="button"]:hover {
     color: #ffffff;
     background: #FF6F61;
     border-color: #FF6F61;
 }
 
-input[type="filend"] ,#thumbnail{
+input[type="file"] ,#thumbnail{
     text-align: center;
     color: #ffffff;
     background: #FF6F61;
@@ -380,6 +380,10 @@ input[type="reset"]:hover {
     border: 0;
     border-radius: 0;
     background: #f8f9fa;
+}
+
+.nav-bar .dropdown-menu:hover {
+    background: #dedfe0;
 }
 
 @media (min-width: 768px) {
@@ -882,12 +886,14 @@ input[type="reset"]:hover {
     background-color: #ffffff;
     padding: 20px;
     box-shadow: #cccccc 0px 0px 10px 0px;
+    min-width:fit-content;
 }
 
 .single-news .sn-content {
     position: relative;
     width: 100%;
     padding: 30px 0;
+    min-width:fit-content;
 }
 
 .single-news .sn-content h1.sn-title {
@@ -926,6 +932,7 @@ input[type="reset"]:hover {
 
 .single-news .sn-slider .sn-img img {
     width: 100%;
+    max-width: 100%;
 }
 
 .single-news .sn-slider .sn-img:hover img {

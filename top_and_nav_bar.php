@@ -17,20 +17,20 @@ include_once("functions/is_login.php");
     <meta content="Bootstrap News Template - Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Google Fonts -->
-    <link href="lib/css/googleapis.css" rel="stylesheet"> 
+    <link href="/lib/css/googleapis.css" rel="stylesheet"> 
 
     <!-- CSS Libraries -->
-    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/css/all.min.css" rel="stylesheet">
-    <link href="lib/slick/slick.css" rel="stylesheet">
-    <link href="lib/slick/slick-theme.css" rel="stylesheet">
+    <link href="/lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lib/css/all.min.css" rel="stylesheet">
+    <link href="/lib/slick/slick.css" rel="stylesheet">
+    <link href="/lib/slick/slick-theme.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Template Stylesheet -->
-    <link href="lib/css/style.css" rel="stylesheet">
+    <link href="/lib/css/style.css" rel="stylesheet">
 </head>
 <body onload="showMessage()">
     
@@ -41,7 +41,7 @@ include_once("functions/is_login.php");
                 <div class="col-lg-3 col-md-4">
                     <div class="b-logo">
                         <a href="/">
-                            <img src="img/logo.png" alt="Logo">
+                            <img src="/img/logo.png" alt="Logo">
                         </a>
                     </div>
                 </div>
@@ -67,35 +67,35 @@ include_once("functions/is_login.php");
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.php" class="nav-item nav-link <?php if ($url == "index.php" or $url == "news.php")echo "active"?>">首页</a>
+                        <a href="/" class="nav-item nav-link <?php if ($url == "index.php" or $url == "news.php")echo "active"?>">首页</a>
 
-                        <?php if(is_admin()){ ?><a href="index.php?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a> <?php } ?>
+                        <?php if(is_admin()){ ?><a href="/?url=review_list.php" class="nav-item nav-link <?php if ($url == "review_list.php")echo "active"?>">评论浏览</a> <?php } ?>
 
-                        <a href="index.php?url=news_list.php&page_size=10" class="nav-item nav-link <?php if ($url == "news_list.php")echo "active"?>">新闻浏览</a>
+                        <a href="/?url=news_list.php&page_size=10" class="nav-item nav-link <?php if ($url == "news_list.php")echo "active"?>">新闻浏览</a>
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle <?php if ($url == "category_list.php")echo "active"?>"" data-toggle="dropdown">分类浏览</a>
                             <div class="dropdown-menu">
-                                <a href="index.php?url=category_list.php" class="dropdown-item">所有分类 (All)</a>
+                                <a href="/?url=category_list.php" class="dropdown-item">所有分类 (All)</a>
                                 <?php 
                                 $sql = "SELECT category_id, category.name FROM category ORDER BY name;";
-                                get_connection();
+                                $database_connection = get_connection();
                                 $result_set = $database_connection->query($sql);
                                 close_connection();
                                 while($row = mysqli_fetch_array($result_set)){ ?>
-                                    <a href="index.php?url=category_list.php&category_id=<?=$row['category_id']?>&page_size=10" class="dropdown-item"><?php echo $row['name']?></a>
+                                    <a href="/?url=category_list.php&category_id=<?=$row['category_id']?>&page_size=10" class="dropdown-item"><?php echo $row['name']?></a>
                                 <?php  }
                                 ?>
                             </div>
                         </div>
 
                         <?php if(is_admin()){ ?>
-                            <a href="index.php?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
+                            <a href="/?url=news_add.php" class="nav-item nav-link <?php if ($url == "news_add.php")echo "active"?>">新闻发布</a>
 
-                            <a href="index.php?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
+                            <a href="/?url=category_add.php" class="nav-item nav-link <?php if ($url == "category_add.php")echo "active"?>">添加分类</a>
                         <?php } ?>
 
-                        <a href="index.php?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
+                        <a href="/?url=contact.php" class="nav-item nav-link <?php if ($url == "contact.php")echo "active"?>">联系方法</a>
                     </div>
                     <div class="social ml-auto">
                         <?php include_once("social-brands.php") ?>

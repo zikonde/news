@@ -16,7 +16,7 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
      } 
      if(is_login()){ ?>
           欢迎 <?=$_SESSION['name'] ?> 访问系统！<br/> 
-            <a href='index?url=logout.php' onclick="return confirm('确认要注销？')">注销</a> 
+            <a href='/?url=logout.php' onclick="return confirm('确认要注销？')">注销</a> 
      <?php }else{
           $name = ""; 
           if(isset($_COOKIE["name"])){ 
@@ -28,7 +28,7 @@ if($_SERVER["PHP_SELF"] === "/login.php"){
           } 
           ?> 
 
-          <form action="login_process.php" method="post"> 
+          <form action="/login_process.php" method="post"> 
                用户名：<input type="text" name="name" size="15   " value="<?php echo $name?>" autocomplete=1 placeholder="请输入用户名或邮箱"/>
                &emsp;
                密 码 ：<input type="password" name="password" size="15" value="<?php echo $password?>"  placeholder="请输入密码"/>

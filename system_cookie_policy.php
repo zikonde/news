@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>CookieÕþ²ß</title>
+<link href="/img/favicon.ico" rel="icon">
 </head>
 <body>
         

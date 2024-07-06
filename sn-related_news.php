@@ -1,13 +1,10 @@
 
 <div class="row sn-slider">
     <?php
-    include_once("functions/get_news.php"); 
-    include_once("functions/get_url_parameters.php"); 
+    include_once("includes/sn-model.php"); 
 
-    $result = get_related($news_id, $page_size, $page_current);
-
-    if (mysqli_num_rows($result) > 0) { 
-        while($row = mysqli_fetch_assoc($result)) {
+    if (mysqli_num_rows($related_result) > 0) { 
+        while($row = mysqli_fetch_assoc($related_result)) {
             $newsId = $row["news_id"];
             $title = $row["title"];
             $thumbnail = $row["thumbnail"];?>
@@ -15,23 +12,18 @@
                 <div class="sn-img">
                     <img src="<?= $thumbnail ?>" />
                     <div class="sn-title">
-                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>" title="<?=$row['title']; ?>"> <?= mb_strcut($row['title'],0,18,"gbk").(strlen($row['title'])>18?"...":"") ?></a>
                     </div>
                 </div>
             </div>
         <?php }
     } else {?>
-    <div>
         <div>
             <div>
-                <a>未发现相关新闻。</a>
+                <div>
+                    <a>未发现相关新闻。</a>
+                </div>
             </div>
         </div>
-    </div>
-    <?php  } 
-
-    // Close the connection
-    mysqli_close($database_connection);
-
-    ?>
+    <?php  } ?>
 </div>

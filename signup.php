@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>×¢²á</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <?php 
@@ -14,7 +14,7 @@
     <div class="registration-form">
         <div class="close" onclick="toggleSignup()"><a href="#"><i class="fa-regular fa-circle-xmark"></i></a></div>
         <br />
-        <form action="signup_action.php" method="POST">
+        <form action="/signup_action.php" method="POST">
             <table>
                 <p class="section-label">±ØÌîÐÅÏ¢</p>
                 <tr>

@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>Contact</title>
+        <link href="/img/favicon.ico" rel="icon">
     </head>
 
     <body>
@@ -27,7 +28,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <div class="contact-form">
-                                <form>
+                                <form action="contact.php">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <input type="text" class="form-control" placeholder="您的姓名" />
@@ -42,7 +43,7 @@
                                     <div class="form-group">
                                         <textarea class="form-control" rows="5" placeholder="留言"></textarea>
                                     </div>
-                                    <div><button class="btn" type="submit">发送消息</button></div>
+                                    <div><input type="submit" value="发送消息"/></div>
                                 </form>
                             </div>
                         </div>
@@ -54,7 +55,7 @@
                                 <br>
 
                                 <h4><i class="fa-solid fa-user"></i> 制作人 1： 尼康达（Zikonde）</h4>
-                                <h4><i class="fa fa-map-marker"></i> 手机号：17543995348</h4>
+                                <h4><i class="fa fa-map-marker"></i> 手机号：175XXXXXX48</h4>
                                 <h4><i class="fa-brands fa-weixin"></i> 微信号：zirenda</h4>
                                 <h4><i class="fa-brands fa-qq"></i> QQ号：2819960965</h4>
                                 

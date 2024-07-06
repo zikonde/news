@@ -1,17 +1,9 @@
 <?php 
-include_once("functions/get_url_parameters.php");
-include_once("functions/get_news.php");
-
-//构造查询所有新闻的SQL语句
-$result = get_category_news();
+$result = get_category_news($database_connection);
 $result_categories = $result[0];
 $total_records_by_category = $result[1];
 $result_search_by_category_set = $result[2];
-    
-//提供进行模糊查询的form表单 
-?> 
 
-<?php 
 //分页的实现 
 for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
     <!-- Category News Start-->
@@ -46,7 +38,7 @@ for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
                                         <div class="cn-img">
                                             <img src="<?=$row['thumbnail']?>" />
                                             <div class="cn-title">
-                                                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)" title="<?=$row['title']; ?>"><?=mb_strcut($row['title'],0,40,"gbk").(strlen($row['title'])>40?"...":"")?></a>
                                             </div>
                                         </div>
                                     </div>    
