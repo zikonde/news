@@ -1,10 +1,13 @@
 
 <div class="row sn-slider">
     <?php
-    include_once("includes/sn-model.php"); 
+    include_once("functions/get_news.php"); 
+    include_once("functions/get_url_parameters.php"); 
 
-    if (mysqli_num_rows($related_result) > 0) { 
-        while($row = mysqli_fetch_assoc($related_result)) {
+    $result = get_related($news_id, $page_size, $page_current);
+
+    if (mysqli_num_rows($result) > 0) { 
+        while($row = mysqli_fetch_assoc($result)) {
             $newsId = $row["news_id"];
             $title = $row["title"];
             $thumbnail = $row["thumbnail"];?>
@@ -18,12 +21,17 @@
             </div>
         <?php }
     } else {?>
+    <div>
         <div>
             <div>
-                <div>
-                    <a>未发现相关新闻。</a>
-                </div>
+                <a>未发现相关新闻。</a>
             </div>
         </div>
-    <?php  } ?>
+    </div>
+    <?php  } 
+
+    // Close the connection
+    mysqli_close($database_connection);
+
+    ?>
 </div>

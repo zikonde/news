@@ -5,32 +5,31 @@ include_once("functions/get_news.php");
 include_once("functions/get_url_parameters.php");
 include_once("functions/page.php"); 
 
-// 连接数据库 
-$database_connection = get_connection();
+//显示文件上传的状态信息 
 
 $sql = "SELECT category_id, name, description from category WHERE category_id LIKE '$category_id%'";
 
 //构造查询所有新闻的SQL语句
+get_connection();
 $result_categories = $database_connection->query($sql);
-
+close_connection();
 $total_records_by_category = [];
 while($categories = mysqli_fetch_assoc($result_categories)){
-    $total_records_by_category[] = get_news_count($database_connection, "", $categories['category_id']);
+    $total_records_by_category[] = get_news_count("", $categories['category_id']);
 }
 
 //构造模糊查询新闻的SQL语句 
+get_connection();
 $result_categories = $database_connection->query($sql);
-
+close_connection();
 $result_search_by_category_set = [];
 while($categories = mysqli_fetch_assoc($result_categories)){
-    $result_search_by_category_set[] = get_matching($database_connection, "", $page_size, $page_current, $categories['category_id']);
+    $result_search_by_category_set[] = get_matching("", $page_size, $page_current, $categories['category_id']);
 }
 
-
+get_connection();
 // var_dump(mysqli_fetch_all($result_search_by_category_set[1]));
 $result_categories = $database_connection->query($sql);
-
-//关闭数据库连接
 close_connection(); 
 
 ?> 

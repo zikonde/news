@@ -79,7 +79,7 @@ include_once("functions/is_login.php");
                                 <a href="index.php?url=category_list.php" class="dropdown-item">所有分类 (All)</a>
                                 <?php 
                                 $sql = "SELECT category_id, category.name FROM category ORDER BY name;";
-                                $database_connection = get_connection();
+                                get_connection();
                                 $result_set = $database_connection->query($sql);
                                 close_connection();
                                 while($row = mysqli_fetch_array($result_set)){ ?>
