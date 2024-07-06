@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>вўЫНеўВп</title>
+<link href="/img/favicon.ico" rel="icon">
 </head>
 <body>
         

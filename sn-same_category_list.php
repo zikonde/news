@@ -22,7 +22,7 @@ include_once("includes/sn-model.php");
                 <img src="<?php echo $row['thumbnail']?>" />
             </div>
             <div class="nl-title">
-                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$row['title']; ?>"><?php echo mb_strcut($row['title'],0,25,"gbk").(strlen($row['title'])>25?"...":"")?></a>
             </div>
         </div>
         <?php  }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>◊¢≤·</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <?php 
@@ -14,7 +14,7 @@
     <div class="registration-form">
         <div class="close" onclick="toggleForgotPwd()"><a href="#"><i class="fa-regular fa-circle-xmark"></i></a></div>
         <br />
-        <form action="forgot_pwd_action.php" method="POST">
+        <form action="/forgot_pwd_action.php" method="POST">
             <table>
                 <tr>
                     <td><label for="email">” œ‰</label></td>

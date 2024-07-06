@@ -49,6 +49,7 @@ if (!$_SERVER["REQUEST_METHOD"] == "POST") {
                $_SESSION['role'] = $admin['role']; 
                $_SESSION['name'] = $admin['name'];
                
+               
                header("Location:".add_to_url(["login_message"=>"password_right"]));
           }else{ 
                header("Location:".add_to_url(["login_message"=>"password_error"]));

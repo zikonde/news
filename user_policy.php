@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>使用条款</title>
+<link href="/img/favicon.ico" rel="icon">
 </head>
 <body>
         

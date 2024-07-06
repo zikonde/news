@@ -33,13 +33,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab1) ?>
+                                    $row = mysqli_fetch_array($tab1) ;
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }
@@ -58,13 +59,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab1) ?>
+                                    $row = mysqli_fetch_array($tab1) ;
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }
@@ -83,13 +85,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab1) ?>
+                                    $row = mysqli_fetch_array($tab1) ;
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }
@@ -125,13 +128,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab2) ?>
+                                    $row = mysqli_fetch_array($tab2) ;
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }
@@ -150,13 +154,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab2) ?>
+                                    $row = mysqli_fetch_array($tab2) ;
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }
@@ -175,13 +180,14 @@ $tab2 = $result_set[1];
                             }else{
                                 $n = 0;
                                 while($n++<3){
-                                    $row = mysqli_fetch_array($tab2) ?>
+                                    $row = mysqli_fetch_array($tab2);
+                                    $title = $row["title"]; ?>
                                     <div class="tn-news">
                                         <div class="tn-img">
                                             <img src="<?php echo $row['thumbnail']?>" />
                                         </div>
                                         <div class="tn-title">
-                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                            <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,30,"gbk").(strlen($title)>30?"...":"")?></a>
                                         </div>
                                     </div>
                                 <?php  }

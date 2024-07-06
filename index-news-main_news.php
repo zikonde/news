@@ -13,12 +13,13 @@ $more = $result_set[1];
                     if($main){
                         $n = 0;
                         while($n++ < 9){ 
-                            $row = mysqli_fetch_array($main)?>
+                            $row = mysqli_fetch_array($main);
+                            $title = $row["title"]; ?>
                             <div class="col-md-4">
                                 <div class="mn-img">
                                     <img src="<?php echo $row['thumbnail']?>" />
                                     <div class="mn-title">
-                                        <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                        <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" title="<?=$title; ?>"><?=mb_strcut($title,0,18,"gbk").(strlen($title)>18?"...":"")?></a>
                                     </div>
                                 </div>
                             </div>

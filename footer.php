@@ -53,11 +53,11 @@
         <div class="footer-menu">
             <div class="container">
                 <div class="f-menu">
-				    <a href="index.php?url=system_introduction.php">系统简介</a> 
-				    <a href="contact.php">联系方法</a> 
-                    <a href="user_policy.php">使用条款</a>
-                    <a href="privacy_policy.php">隐私政策</a>
-                    <a href="system_cookie_policy.php">Cookie政策</a>
+				    <a href="/?url=system_introduction.php">系统简介</a> 
+				    <a href="/?url=contact.php">联系方法</a> 
+                    <a href="/?url=user_policy.php">使用条款</a>
+                    <a href="/?url=privacy_policy.php">隐私政策</a>
+                    <a href="/?url=system_cookie_policy.php">Cookie政策</a>
 				    <a href="https://www.12377.cn/bmgz/2022/8db0296a_web.html">举报违法信息</a> 
                 </div>
             </div>
@@ -81,10 +81,10 @@
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
         <!-- JavaScript Libraries -->
-        <script src="lib/js/jquery-3.4.1.min.js"></script>
-        <script src="lib/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/slick/slick.min.js"></script>
+        <script src="/lib/js/jquery-3.4.1.min.js"></script>
+        <script src="/lib/js/bootstrap.bundle.min.js"></script>
+        <script src="/lib/easing/easing.min.js"></script>
+        <script src="/lib/slick/slick.min.js"></script>
 
         <!-- Template Javascript -->
-        <script src="lib/js/main.js"></script>
+        <script src="/lib/js/main.js"></script>

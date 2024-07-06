@@ -12,7 +12,7 @@
                 <div class="sn-img">
                     <img src="<?= $thumbnail ?>" />
                     <div class="sn-title">
-                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>" title="<?=$row['title']; ?>"> <?= mb_strcut($row['title'],0,18,"gbk").(strlen($row['title'])>18?"...":"") ?></a>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>ÏµÍ³¼ò½é</title>
+<link href="/img/favicon.ico" rel="icon">
 </head>
 <body>
         

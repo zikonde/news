@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>新闻详细</title>
-        <link href="img/favicon.ico" rel="icon">
+        <link href="/img/favicon.ico" rel="icon">
     </head>
 
     <body>
@@ -46,7 +46,7 @@
                             <li class="breadcrumb-item"><a href="index.php">首页</a></li>
                             <li class="breadcrumb-item"><a href="index.php?url=category_list.php">新闻</a></li>
                             <li class="breadcrumb-item"><a href="index.php?url=category_list.php&category_id=<?=$category_id?>&page_size=10"><?php echo $category_name;?></a></li>
-                            <li class="breadcrumb-item active"><?=$title?></li>
+                            <li class="breadcrumb-item active"><?=mb_strcut($title,0,40,"gbk").(strlen($title)>40?"...":"") ?></li>
                         </ul>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                                         <br />
                                         <?php if($attatchment){ ?> 
                                         <hr />
-                                        <a href="download.php?attachment=<?php echo $attatchment;?>">附件：<?php echo $news['attachment'];?></a> <?php }?>
+                                        <a href="/?url=download.php&attachment=<?php echo $attatchment;?>">附件：<?php echo $news['attachment'];?></a> <?php }?>
                                     </div>
                                     
                                     <hr />

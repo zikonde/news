@@ -22,7 +22,7 @@ $right = $result[1];
                             <div class="tn-img">
                                 <img src="<?= $thumbnail ?>" />
                                 <div class="tn-title">
-                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                    <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>" title="<?=$title; ?>"><?=mb_strcut($title,0,40,"gbk").(strlen($title)>40?"...":"")?></a>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ $right = $result[1];
                                 <div class="tn-img">
                                     <img src="<?= $thumbnail ?>" />
                                     <div class="tn-title">
-                                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>"> <?= $title ?></a>
+                                        <a href="<?=("?url=news_detail.php&news_id=$newsId") ?>" title="<?=$title; ?>"><?=mb_strcut($title,0,25,"gbk").(strlen($title)>25?"...":"")?></a> 
                                     </div>
                                 </div>
                             </div>

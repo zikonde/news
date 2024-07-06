@@ -38,7 +38,7 @@ for($i = 0; $i < count($result_search_by_category_set)-1; $i=$i+2){?>
                                         <div class="cn-img">
                                             <img src="<?=$row['thumbnail']?>" />
                                             <div class="cn-title">
-                                                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)"><?php echo mb_strcut($row['title'],0,40,"gbk")?></a>
+                                                <a href="index.php?url=news_detail.php&news_id= <?php echo $row['news_id']?>" onclick="updateClicked(this.href)" title="<?=$row['title']; ?>"><?=mb_strcut($row['title'],0,40,"gbk").(strlen($row['title'])>40?"...":"")?></a>
                                             </div>
                                         </div>
                                     </div>    

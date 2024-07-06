@@ -382,6 +382,10 @@ input[type="reset"]:hover {
     background: #f8f9fa;
 }
 
+.nav-bar .dropdown-menu:hover {
+    background: #dedfe0;
+}
+
 @media (min-width: 768px) {
     .nav-bar,
     .nav-bar .navbar {
@@ -882,12 +886,14 @@ input[type="reset"]:hover {
     background-color: #ffffff;
     padding: 20px;
     box-shadow: #cccccc 0px 0px 10px 0px;
+    min-width:fit-content;
 }
 
 .single-news .sn-content {
     position: relative;
     width: 100%;
     padding: 30px 0;
+    min-width:fit-content;
 }
 
 .single-news .sn-content h1.sn-title {
@@ -926,6 +932,7 @@ input[type="reset"]:hover {
 
 .single-news .sn-slider .sn-img img {
     width: 100%;
+    max-width: 100%;
 }
 
 .single-news .sn-slider .sn-img:hover img {
